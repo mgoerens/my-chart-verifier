@@ -209,7 +209,7 @@ For more information see [Verifier added annotations](./helm-chart-annotations.m
 
 For a report only submission the report must include a valid url for the chart.
 
-For more information see [error-with-the-chart-url-when-submitting-report](https://github.com/openshift-helm-charts/charts/blob/main/docs/README.md#error-with-the-chart-url-when-submitting-report)
+For more information see [error-with-the-chart-url-when-submitting-report](https://github.com/openshift-helm-charts/charts/blob/master/docs/README.md#error-with-the-chart-url-when-submitting-report)
 
 For more information see [Verifier added annotations](./helm-chart-annotations.md#verifier-added-annotations)
    

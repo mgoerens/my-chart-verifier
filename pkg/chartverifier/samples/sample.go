@@ -17,7 +17,7 @@ func runVerifier() error {
 	verifier, verifierErr := verifier.NewVerifier().
 		SetValues(verifier.CommandSet, commandSet).
 		UnEnableChecks([]checks.CheckName{checks.ChartTesting}).
-		Run("https://github.com/mgoerens/my-chart-verifier/blob/main/tests/charts/psql-service/0.1.9/psql-service-0.1.9.tgz?raw=true")
+		Run("https://github.com/mgoerens/my-chart-verifier/blob/master/tests/charts/psql-service/0.1.9/psql-service-0.1.9.tgz?raw=true")
 
 	if verifierErr != nil {
 		return verifierErr

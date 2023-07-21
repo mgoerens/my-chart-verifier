@@ -2,7 +2,7 @@
 
 Chart verifier - release creation is automated through a GitHub workflow. To create a new release follow these steps:
 
-1. Modify the [pkg/chartverifier/version/version_info.json](https://github.com/mgoerens/my-chart-verifier/blob/main/pkg/chartverifier/version/version_info.json) file with information about the new release, for example:
+1. Modify the [pkg/chartverifier/version/version_info.json](https://github.com/mgoerens/my-chart-verifier/blob/master/pkg/chartverifier/version/version_info.json) file with information about the new release, for example:
    ```
    {
        "version": "1.2.0",
@@ -17,7 +17,7 @@ Chart verifier - release creation is automated through a GitHub workflow. To cre
     - quay-image : set to the name of the image (only used for testing).
     - release-info : list of significant PR's in the release
 
-1. Create a PR which contains only [pkg/chartverifier/version/version_info.json](https://github.com/mgoerens/my-chart-verifier/blob/main/pkg/chartverifier/version/version_info.json)
+1. Create a PR which contains only [pkg/chartverifier/version/version_info.json](https://github.com/mgoerens/my-chart-verifier/blob/master/pkg/chartverifier/version/version_info.json)
 
 1. The workflow will detect the file is changed and automatically merge the file and create the release if the following conditions are met:
 

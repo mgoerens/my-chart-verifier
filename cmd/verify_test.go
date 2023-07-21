@@ -392,7 +392,7 @@ func TestSignatureCheck(t *testing.T) {
 
 		cmd.SetArgs([]string{
 			"-e", "signature-is-valid",
-			"https://github.com/mgoerens/my-chart-verifier/blob/main/tests/charts/psql-service/0.1.11/psql-service-0.1.11.tgz?raw=true",
+			"https://github.com/mgoerens/my-chart-verifier/blob/master/tests/charts/psql-service/0.1.11/psql-service-0.1.11.tgz?raw=true",
 			"-E",
 		})
 

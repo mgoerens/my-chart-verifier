@@ -32,7 +32,7 @@ metadata:
             VendorType: partner
             version: v1.1
         reportDigest: uint64:13041017788004879705    
-        chart-uri: https://github.com/mmulholla/development/blob/main/charts/partners/test-org/psql-service/0.1.9/psql-service-0.1.9.tgz?raw=true
+        chart-uri: https://github.com/mmulholla/development/blob/master/charts/partners/test-org/psql-service/0.1.9/psql-service-0.1.9.tgz?raw=true
         digests:
             chart: sha256:94cbcb63531bc4457e7b0314f781070bbfe4affbdca98f67acadc381bf0f0b4f
             package: 4e9592ea31c0509bec308905289491b7056b78bdde2ab71a85c72be0901759b8

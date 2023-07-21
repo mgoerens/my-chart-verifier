@@ -6,7 +6,7 @@ metadata:
         profile:
             VendorType: partner
             version: v1.1
-        chart-uri: https://github.com/mgoerens/my-chart-verifier/blob/main/tests/charts/psql-service/0.1.9/psql-service-0.1.9.tgz?raw=true
+        chart-uri: https://github.com/mgoerens/my-chart-verifier/blob/master/tests/charts/psql-service/0.1.9/psql-service-0.1.9.tgz?raw=true
         digests:
             chart: sha256:9f4d290c9a89f2900c3ffe9c1680c2ac2e61a34619e526de4652e2f2dbf4609b
             package: 89589ab22f10f5a91411145c1a4855e88091b7ff316255e8fceb2044db0b31e7
