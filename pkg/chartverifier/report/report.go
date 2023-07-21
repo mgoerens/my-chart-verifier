@@ -174,7 +174,7 @@ func (r *Report) checkReportDigest() error {
 			return fmt.Errorf("error calculating report digest: %v", err)
 		}
 		if calculatedDigest != digestFromReport {
-			return errors.New("digest in report did not match report content")
+			return errors.New("digest in report did not match report content. Calculated = " + calculatedDigest)
 		}
 	}
 	return nil
