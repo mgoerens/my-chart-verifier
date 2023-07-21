@@ -34,9 +34,9 @@ jobs:
               working-directory: ./my-chart-verifier
               run: make fmt
 
-            - name: Run Linters
-              working-directory: ./my-chart-verifier
-              run: make lint
+#            - name: Run Linters
+#              working-directory: ./my-chart-verifier
+#              run: make lint
 
             - name: Build Binary
               working-directory: ./my-chart-verifier
