@@ -22,7 +22,7 @@ import (
 	"github.com/spf13/viper"
 	helmcli "helm.sh/helm/v3/pkg/cli"
 
-	apiChecks "github.com/redhat-certification/my-chart-verifier/pkg/chartverifier/checks"
+	apiChecks "github.com/mgoerens/my-chart-verifier/pkg/chartverifier/checks"
 )
 
 type Result struct {

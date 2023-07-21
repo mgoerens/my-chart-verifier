@@ -3,10 +3,10 @@ package samples
 import (
 	"fmt"
 
-	"github.com/redhat-certification/my-chart-verifier/pkg/chartverifier/checks"
-	"github.com/redhat-certification/my-chart-verifier/pkg/chartverifier/report"
-	"github.com/redhat-certification/my-chart-verifier/pkg/chartverifier/reportsummary"
-	"github.com/redhat-certification/my-chart-verifier/pkg/chartverifier/verifier"
+	"github.com/mgoerens/my-chart-verifier/pkg/chartverifier/checks"
+	"github.com/mgoerens/my-chart-verifier/pkg/chartverifier/report"
+	"github.com/mgoerens/my-chart-verifier/pkg/chartverifier/reportsummary"
+	"github.com/mgoerens/my-chart-verifier/pkg/chartverifier/verifier"
 )
 
 func runVerifier() error {
@@ -17,7 +17,7 @@ func runVerifier() error {
 	verifier, verifierErr := verifier.NewVerifier().
 		SetValues(verifier.CommandSet, commandSet).
 		UnEnableChecks([]checks.CheckName{checks.ChartTesting}).
-		Run("https://github.com/redhat-certification/my-chart-verifier/blob/main/tests/charts/psql-service/0.1.9/psql-service-0.1.9.tgz?raw=true")
+		Run("https://github.com/mgoerens/my-chart-verifier/blob/main/tests/charts/psql-service/0.1.9/psql-service-0.1.9.tgz?raw=true")
 
 	if verifierErr != nil {
 		return verifierErr

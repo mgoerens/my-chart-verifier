@@ -19,7 +19,7 @@ import (
 	"k8s.io/client-go/tools/clientcmd"
 	"k8s.io/kubectl/pkg/scheme"
 
-	"github.com/redhat-certification/my-chart-verifier/internal/chartverifier/utils"
+	"github.com/mgoerens/my-chart-verifier/internal/chartverifier/utils"
 )
 
 //go:embed kubeOpenShiftVersionMap.yaml

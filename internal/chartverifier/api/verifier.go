@@ -6,11 +6,11 @@ import (
 	"github.com/spf13/viper"
 	"helm.sh/helm/v3/pkg/cli"
 
-	"github.com/redhat-certification/my-chart-verifier/internal/chartverifier"
-	"github.com/redhat-certification/my-chart-verifier/internal/chartverifier/checks"
-	"github.com/redhat-certification/my-chart-verifier/internal/chartverifier/profiles"
-	apichecks "github.com/redhat-certification/my-chart-verifier/pkg/chartverifier/checks"
-	apireport "github.com/redhat-certification/my-chart-verifier/pkg/chartverifier/report"
+	"github.com/mgoerens/my-chart-verifier/internal/chartverifier"
+	"github.com/mgoerens/my-chart-verifier/internal/chartverifier/checks"
+	"github.com/mgoerens/my-chart-verifier/internal/chartverifier/profiles"
+	apichecks "github.com/mgoerens/my-chart-verifier/pkg/chartverifier/checks"
+	apireport "github.com/mgoerens/my-chart-verifier/pkg/chartverifier/report"
 )
 
 var allChecks checks.DefaultRegistry

@@ -40,8 +40,8 @@ import (
 	"helm.sh/helm/v3/pkg/storage"
 	"helm.sh/helm/v3/pkg/storage/driver"
 
-	"github.com/redhat-certification/my-chart-verifier/internal/helm/actions"
-	"github.com/redhat-certification/my-chart-verifier/internal/tool"
+	"github.com/mgoerens/my-chart-verifier/internal/helm/actions"
+	"github.com/mgoerens/my-chart-verifier/internal/tool"
 )
 
 // loadChartFromRemote attempts to retrieve a Helm chart from the given remote url. Returns an error if the given url

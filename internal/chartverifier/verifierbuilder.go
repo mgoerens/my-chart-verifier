@@ -20,14 +20,14 @@ import (
 	"errors"
 	"time"
 
-	"github.com/redhat-certification/my-chart-verifier/internal/chartverifier/profiles"
+	"github.com/mgoerens/my-chart-verifier/internal/chartverifier/profiles"
 
 	"helm.sh/helm/v3/pkg/cli"
 
 	"github.com/spf13/viper"
 
-	"github.com/redhat-certification/my-chart-verifier/internal/chartverifier/checks"
-	apiChecks "github.com/redhat-certification/my-chart-verifier/pkg/chartverifier/checks"
+	"github.com/mgoerens/my-chart-verifier/internal/chartverifier/checks"
+	apiChecks "github.com/mgoerens/my-chart-verifier/pkg/chartverifier/checks"
 )
 
 var defaultRegistry checks.Registry

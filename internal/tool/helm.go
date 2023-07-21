@@ -7,7 +7,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/redhat-certification/my-chart-verifier/internal/chartverifier/utils"
+	"github.com/mgoerens/my-chart-verifier/internal/chartverifier/utils"
 
 	"helm.sh/helm/v3/pkg/action"
 	"helm.sh/helm/v3/pkg/chart/loader"

@@ -5,7 +5,7 @@ import (
 
 	helmchart "helm.sh/helm/v3/pkg/chart"
 
-	apichecks "github.com/redhat-certification/my-chart-verifier/pkg/chartverifier/checks"
+	apichecks "github.com/mgoerens/my-chart-verifier/pkg/chartverifier/checks"
 )
 
 type (

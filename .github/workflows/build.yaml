@@ -99,7 +99,7 @@ jobs:
               run: |
                   # build a docker image
                   commit_sha=$(git rev-parse --short HEAD)
-                  ve1/bin/build-and-test --image-name="quay.io/redhat-certification/my-chart-verifier" --sha-value=$commit_sha --build-only="True"}
+                  ve1/bin/build-and-test --image-name="quay.io/mgoerens/my-chart-verifier" --sha-value=$commit_sha --build-only="True"}
 
 
             - name: Build podman Image
@@ -111,7 +111,7 @@ jobs:
                   commit_sha=$(git rev-parse --short HEAD)
                   image_tag="podman-"$commit_sha
                   echo "use image tag $image_tag"
-                  podman build -t quay.io/redhat-certification/my-chart-verifier:$image_tag .
+                  podman build -t quay.io/mgoerens/my-chart-verifier:$image_tag .
                   echo "podman_image_tag=$image_tag" >> $GITHUB_OUTPUT
 
             - name: Create tarfile
@@ -131,7 +131,7 @@ jobs:
                   API_SERVER=$( echo -n ${{ secrets.API_SERVER }} | base64 -d)
                   gpg --version
                   curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
-                  if [ $GITHUB_REPOSITORY == "redhat-certification/my-chart-verifier" ]; then
+                  if [ $GITHUB_REPOSITORY == "mgoerens/my-chart-verifier" ]; then
                     # TODO: temporarily allow for skipping TLS verification as the new cluster uses local-only certificates
                     # This if logic isn't removed to remind us to come back and swap this out when a valid cert is put in place.
                     ./oc login --insecure-skip-tls-verify --token=${{ secrets.CLUSTER_TOKEN }} --server=${API_SERVER}
@@ -224,7 +224,7 @@ jobs:
               id: wait_for_image_build
               if: ${{ steps.check_version_updated.outputs.updated == 'true'}}
               run: |
-                expectedImage=quay.io/redhat-certification/my-chart-verifier:${{ steps.check_version_in_PR.outputs.PR_version }}
+                expectedImage=quay.io/mgoerens/my-chart-verifier:${{ steps.check_version_in_PR.outputs.PR_version }}
                 for i in {1..30}; do
                   s=60
                   echo "Querying Quay for "${expectedImage}" in ${s} seconds..." 
@@ -241,7 +241,7 @@ jobs:
               with:
                 username: ${{ secrets.QUAY_BOT_USERNAME }}
                 password: ${{ secrets.QUAY_BOT_TOKEN }}
-                registry: quay.io/redhat-certification
+                registry: quay.io/mgoerens
 
             - name: Update latest tag
               if: ${{ steps.login_as_bot.outcome == 'success'}}
@@ -249,7 +249,7 @@ jobs:
               # TODO: When we shift to a push-from-this-repo model (instead of Quay build model)
               # we should transition this tag workflow to use the digest of the image built here in CI.
               run: |
-                imageReference=quay.io/redhat-certification/my-chart-verifier
+                imageReference=quay.io/mgoerens/my-chart-verifier
                 podman pull ${imageReference}:${{ steps.check_version_in_PR.outputs.PR_version }}
                 podman tag ${imageReference}:${{ steps.check_version_in_PR.outputs.PR_version }} ${imageReference}:latest
                 podman push ${imageReference}:latest

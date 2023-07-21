@@ -14,8 +14,8 @@ import (
 	"gopkg.in/yaml.v3"
 	"helm.sh/helm/v3/pkg/cli"
 
-	"github.com/redhat-certification/my-chart-verifier/internal/chartverifier/utils"
-	"github.com/redhat-certification/my-chart-verifier/internal/tool"
+	"github.com/mgoerens/my-chart-verifier/internal/chartverifier/utils"
+	"github.com/mgoerens/my-chart-verifier/internal/tool"
 )
 
 const (

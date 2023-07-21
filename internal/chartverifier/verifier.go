@@ -23,11 +23,11 @@ import (
 	"github.com/spf13/viper"
 	helmcli "helm.sh/helm/v3/pkg/cli"
 
-	"github.com/redhat-certification/my-chart-verifier/internal/chartverifier/checks"
-	"github.com/redhat-certification/my-chart-verifier/internal/chartverifier/profiles"
-	"github.com/redhat-certification/my-chart-verifier/internal/tool"
-	apiChecks "github.com/redhat-certification/my-chart-verifier/pkg/chartverifier/checks"
-	apiReport "github.com/redhat-certification/my-chart-verifier/pkg/chartverifier/report"
+	"github.com/mgoerens/my-chart-verifier/internal/chartverifier/checks"
+	"github.com/mgoerens/my-chart-verifier/internal/chartverifier/profiles"
+	"github.com/mgoerens/my-chart-verifier/internal/tool"
+	apiChecks "github.com/mgoerens/my-chart-verifier/pkg/chartverifier/checks"
+	apiReport "github.com/mgoerens/my-chart-verifier/pkg/chartverifier/report"
 )
 
 type CheckNotFoundErr string

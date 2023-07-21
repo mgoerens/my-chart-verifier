@@ -3,8 +3,8 @@ package reportsummary
 import (
 	helmchart "helm.sh/helm/v3/pkg/chart"
 
-	"github.com/redhat-certification/my-chart-verifier/internal/chartverifier/profiles"
-	apireport "github.com/redhat-certification/my-chart-verifier/pkg/chartverifier/report"
+	"github.com/mgoerens/my-chart-verifier/internal/chartverifier/profiles"
+	apireport "github.com/mgoerens/my-chart-verifier/pkg/chartverifier/report"
 )
 
 type (

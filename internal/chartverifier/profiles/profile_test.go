@@ -11,8 +11,8 @@ import (
 	"github.com/google/go-cmp/cmp"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/redhat-certification/my-chart-verifier/internal/chartverifier/checks"
-	apiChecks "github.com/redhat-certification/my-chart-verifier/pkg/chartverifier/checks"
+	"github.com/mgoerens/my-chart-verifier/internal/chartverifier/checks"
+	apiChecks "github.com/mgoerens/my-chart-verifier/pkg/chartverifier/checks"
 )
 
 const (

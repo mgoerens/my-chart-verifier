@@ -9,9 +9,9 @@ import (
 	"golang.org/x/mod/semver"
 	"gopkg.in/yaml.v3"
 
-	"github.com/redhat-certification/my-chart-verifier/internal/chartverifier/profiles"
-	"github.com/redhat-certification/my-chart-verifier/pkg/chartverifier/checks"
-	"github.com/redhat-certification/my-chart-verifier/pkg/chartverifier/report"
+	"github.com/mgoerens/my-chart-verifier/internal/chartverifier/profiles"
+	"github.com/mgoerens/my-chart-verifier/pkg/chartverifier/checks"
+	"github.com/mgoerens/my-chart-verifier/pkg/chartverifier/report"
 )
 
 const (

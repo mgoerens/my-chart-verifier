@@ -1,7 +1,7 @@
 .DEFAULT_GOAL:=help
 
 IMAGE_BUILDER?=podman
-IMAGE_REPO?=quay.io/redhat-certification
+IMAGE_REPO?=quay.io/mgoerens
 COMMIT_ID=$(shell git rev-parse --short HEAD)
 COMMIT_ID_LONG=$(shell git rev-parse HEAD)
 
@@ -35,7 +35,7 @@ fmt: install.gofumpt
 .PHONY: bin
 bin:
 	CGO_ENABLED=0 go build \
-		-ldflags "-X 'github.com/redhat-certification/my-chart-verifier/cmd.CommitIDLong=$(COMMIT_ID_LONG)'" \
+		-ldflags "-X 'github.com/mgoerens/my-chart-verifier/cmd.CommitIDLong=$(COMMIT_ID_LONG)'" \
 		-o ./out/my-chart-verifier main.go
 
 .PHONY: lint
@@ -45,7 +45,7 @@ lint: install.golangci-lint
 .PHONY: bin_win
 bin_win:
 	env GOOS=windows GOARCH=amd64 CGO_ENABLED=0 go build \
-		-ldflags "-X 'github.com/redhat-certification/my-chart-verifier/cmd.CommitIDLong=$(COMMIT_ID_LONG)'" \
+		-ldflags "-X 'github.com/mgoerens/my-chart-verifier/cmd.CommitIDLong=$(COMMIT_ID_LONG)'" \
 		-o .\out\my-chart-verifier.exe main.go
 
 .PHONY: test

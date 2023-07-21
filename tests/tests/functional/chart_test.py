@@ -74,14 +74,14 @@ def verifier_version(image_type):
         image_tag = os.environ.get("PODMAN_IMAGE_TAG")
         if not image_tag:
             image_tag = "main"
-        image_name =  "quay.io/redhat-certification/my-chart-verifier"
+        image_name =  "quay.io/mgoerens/my-chart-verifier"
         print(f"\nRun version using podman image {image_name}:{image_tag}")
         return run_version_podman_image(image_name,image_tag)
     else: # Fallback to Docker.
         image_tag  =  os.environ.get("VERIFIER_IMAGE_TAG")
         if not image_tag:
             image_tag = "main"
-        image_name =  "quay.io/redhat-certification/my-chart-verifier"
+        image_name =  "quay.io/mgoerens/my-chart-verifier"
         print(f"\nRun version using docker image {image_name}:{image_tag}")
         return run_version_docker_image(image_name, image_tag)
 
@@ -112,7 +112,7 @@ def run_verifier(image_type, profile_type, target_location, command,pgp_key_loca
         image_tag = os.environ.get("PODMAN_IMAGE_TAG")
         if not image_tag:
             image_tag = "main"
-        image_name =  "quay.io/redhat-certification/my-chart-verifier"
+        image_name =  "quay.io/mgoerens/my-chart-verifier"
         print(f"\nRun {command} using podman image {image_name}:{image_tag}")
         if command == "verify":
             return run_verify_podman_image(image_name,image_tag,profile_type,target_location,pgp_key_location)
@@ -122,7 +122,7 @@ def run_verifier(image_type, profile_type, target_location, command,pgp_key_loca
         image_tag  =  os.environ.get("VERIFIER_IMAGE_TAG")
         if not image_tag:
             image_tag = "main"
-        image_name =  "quay.io/redhat-certification/my-chart-verifier"
+        image_name =  "quay.io/mgoerens/my-chart-verifier"
         print(f"\nRun {command} using docker image {image_name}:{image_tag}")
         if command == "verify":
             return run_verify_docker_image(image_name,image_tag,profile_type,target_location,pgp_key_location)

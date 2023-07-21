@@ -152,7 +152,7 @@ Run the chart verifier and set log_ouput to true to get additional information:
 $ podman run --rm -i \
           -e KUBECONFIG=/.kube/config \
           -v "${HOME}/.kube":/.kube:z \ 
-          "quay.io/redhat-certification/my-chart-verifier" \
+          "quay.io/mgoerens/my-chart-verifier" \
           verify -l \
           <chart-uri>
 ```

@@ -20,16 +20,16 @@ each test.
 
 ## Getting my-chart-verifier with Docker/Podman
 
-Container images built from the source code are hosted in https://quay.io/repository/redhat-certification/my-chart-verifier
+Container images built from the source code are hosted in https://quay.io/repository/mgoerens/my-chart-verifier
 ; to download using `docker` execute the following command:
 
 ```text
-docker pull quay.io/redhat-certification/my-chart-verifier
+docker pull quay.io/mgoerens/my-chart-verifier
 ```
 
 ## Getting my-chart-verifier binary directly (Linux only)
 
-Alternatively, download `my-chart-verifier` binary from the [release page](https://github.com/redhat-certification/my-chart-verifier/releases) and run `my-chart-verifier verify` command to perform Helm chart checks.
+Alternatively, download `my-chart-verifier` binary from the [release page](https://github.com/mgoerens/my-chart-verifier/releases) and run `my-chart-verifier verify` command to perform Helm chart checks.
 
 ## Building my-chart-verifier
 
@@ -38,7 +38,7 @@ To build `my-chart-verifier` locally, execute `make bin` for macOS and Linux, or
 To build `my-chart-verifier` container image, execute `make build-image`:
 
 The container image created by the build program is tagged with the commit ID of the working directory at the time of
-the build: `quay.io/redhat-certification/my-chart-verifier:0d3706f`.
+the build: `quay.io/mgoerens/my-chart-verifier:0d3706f`.
 
 ## Usage
 
@@ -67,4 +67,4 @@ To apply all checks except `is-helm-v3`:
 ### Container Usage
 
 The container image produced in 'Building my-chart-verifier' can then be executed with the Docker client
-as `docker run -it --rm quay.io/redhat-certification/my-chart-verifier:0d3706f verify`.
+as `docker run -it --rm quay.io/mgoerens/my-chart-verifier:0d3706f verify`.

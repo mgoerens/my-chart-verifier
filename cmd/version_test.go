@@ -7,7 +7,7 @@ import (
 	"github.com/stretchr/testify/require"
 	"golang.org/x/mod/semver"
 
-	apiversion "github.com/redhat-certification/my-chart-verifier/pkg/chartverifier/version"
+	apiversion "github.com/mgoerens/my-chart-verifier/pkg/chartverifier/version"
 )
 
 func TestVersion(t *testing.T) {

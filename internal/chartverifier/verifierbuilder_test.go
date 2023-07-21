@@ -21,8 +21,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/redhat-certification/my-chart-verifier/internal/chartverifier/checks"
-	"github.com/redhat-certification/my-chart-verifier/internal/chartverifier/profiles"
+	"github.com/mgoerens/my-chart-verifier/internal/chartverifier/checks"
+	"github.com/mgoerens/my-chart-verifier/internal/chartverifier/profiles"
 
 	"github.com/stretchr/testify/require"
 )

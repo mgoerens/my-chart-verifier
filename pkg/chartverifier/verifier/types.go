@@ -3,9 +3,9 @@ package verifier
 import (
 	"time"
 
-	apichecks "github.com/redhat-certification/my-chart-verifier/pkg/chartverifier/checks"
-	apireport "github.com/redhat-certification/my-chart-verifier/pkg/chartverifier/report"
-	apireportsummary "github.com/redhat-certification/my-chart-verifier/pkg/chartverifier/reportsummary"
+	apichecks "github.com/mgoerens/my-chart-verifier/pkg/chartverifier/checks"
+	apireport "github.com/mgoerens/my-chart-verifier/pkg/chartverifier/report"
+	apireportsummary "github.com/mgoerens/my-chart-verifier/pkg/chartverifier/reportsummary"
 )
 
 type (

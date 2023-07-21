@@ -9,9 +9,9 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 
-	"github.com/redhat-certification/my-chart-verifier/internal/chartverifier/utils"
-	apireport "github.com/redhat-certification/my-chart-verifier/pkg/chartverifier/report"
-	apireportsummary "github.com/redhat-certification/my-chart-verifier/pkg/chartverifier/reportsummary"
+	"github.com/mgoerens/my-chart-verifier/internal/chartverifier/utils"
+	apireport "github.com/mgoerens/my-chart-verifier/pkg/chartverifier/report"
+	apireportsummary "github.com/mgoerens/my-chart-verifier/pkg/chartverifier/reportsummary"
 )
 
 func init() {

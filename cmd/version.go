@@ -9,7 +9,7 @@ import (
 
 	"github.com/spf13/cobra"
 
-	apiversion "github.com/redhat-certification/my-chart-verifier/pkg/chartverifier/version"
+	apiversion "github.com/mgoerens/my-chart-verifier/pkg/chartverifier/version"
 )
 
 // Print version and commit ID as json blob

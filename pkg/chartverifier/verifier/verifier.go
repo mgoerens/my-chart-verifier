@@ -24,11 +24,11 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/redhat-certification/my-chart-verifier/internal/chartverifier/api"
-	"github.com/redhat-certification/my-chart-verifier/internal/chartverifier/profiles"
-	"github.com/redhat-certification/my-chart-verifier/pkg/chartverifier/checks"
-	"github.com/redhat-certification/my-chart-verifier/pkg/chartverifier/report"
-	"github.com/redhat-certification/my-chart-verifier/pkg/chartverifier/version"
+	"github.com/mgoerens/my-chart-verifier/internal/chartverifier/api"
+	"github.com/mgoerens/my-chart-verifier/internal/chartverifier/profiles"
+	"github.com/mgoerens/my-chart-verifier/pkg/chartverifier/checks"
+	"github.com/mgoerens/my-chart-verifier/pkg/chartverifier/report"
+	"github.com/mgoerens/my-chart-verifier/pkg/chartverifier/version"
 
 	"github.com/spf13/viper"
 

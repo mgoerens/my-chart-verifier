@@ -25,10 +25,10 @@ import (
 	"github.com/stretchr/testify/require"
 	"gopkg.in/yaml.v3"
 
-	"github.com/redhat-certification/my-chart-verifier/internal/chartverifier/checks"
-	"github.com/redhat-certification/my-chart-verifier/internal/chartverifier/utils"
-	apiChecks "github.com/redhat-certification/my-chart-verifier/pkg/chartverifier/checks"
-	apiReport "github.com/redhat-certification/my-chart-verifier/pkg/chartverifier/report"
+	"github.com/mgoerens/my-chart-verifier/internal/chartverifier/checks"
+	"github.com/mgoerens/my-chart-verifier/internal/chartverifier/utils"
+	apiChecks "github.com/mgoerens/my-chart-verifier/pkg/chartverifier/checks"
+	apiReport "github.com/mgoerens/my-chart-verifier/pkg/chartverifier/report"
 )
 
 func TestCertify(t *testing.T) {
@@ -392,7 +392,7 @@ func TestSignatureCheck(t *testing.T) {
 
 		cmd.SetArgs([]string{
 			"-e", "signature-is-valid",
-			"https://github.com/redhat-certification/my-chart-verifier/blob/main/tests/charts/psql-service/0.1.11/psql-service-0.1.11.tgz?raw=true",
+			"https://github.com/mgoerens/my-chart-verifier/blob/main/tests/charts/psql-service/0.1.11/psql-service-0.1.11.tgz?raw=true",
 			"-E",
 		})
 

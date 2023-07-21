@@ -62,7 +62,7 @@ Web catalog only distribution method is then based on the following conditions:
     $ podman run --rm -i                                \
           -e KUBECONFIG=/.kube/config                   \
           -v "${HOME}/.kube":/.kube:z                   \
-          "quay.io/redhat-certification/my-chart-verifier" \
+          "quay.io/mgoerens/my-chart-verifier" \
           verify --web-catalog-only                     \
           <chart-uri>
     ```
