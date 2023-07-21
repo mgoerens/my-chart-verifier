@@ -39,7 +39,7 @@ jobs:
         id: check_tag_and_version
         run: |
           release_version=${{ steps.get_tag.outputs.release_version }}
-          bin_version=${out/my-chart-verifier version --as-data | jq -r .version}
+          bin_version=$(out/my-chart-verifier version --as-data | jq -r .version)
           if [[ "$release_version" != "$bin_version" ]]; then
             echo "Binary version ($bin_version) doesn't match tag ($release_version)" && exit 1
           fi
