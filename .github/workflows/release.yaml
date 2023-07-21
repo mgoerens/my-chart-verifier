@@ -58,14 +58,14 @@ jobs:
 
       - name: Generate release body
         id: release_body
-        run: ve1/bin/print-release-body
+        run: echo "release_body=$(ve1/bin/print-release-body)"" | tee -a $GITHUB_OUTPUT
 
       - name: Create the the release
         id: create_release
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ steps.get_tag.outputs.release_version }}
-          body: ${{ steps.release_body.outputs.PR_release_body }}
+          body: ${{ steps.release_body.outputs.release_body }}
           files: ${{ steps.build_bin.outputs.tarball_path }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

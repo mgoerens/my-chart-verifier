@@ -99,7 +99,8 @@ def main():
             utils.add_output("PR_release_image",version_info["quay-image"])
             utils.add_output("PR_release_info",version_info["release-info"])
             utils.add_output("PR_includes_release","true")
-            releasebody.make_release_body(version_info["version"],version_info["quay-image"],version_info["release-info"])
+            release_body = releasebody.get_release_body(version_info["version"],version_info["quay-image"],version_info["release-info"])
+            utils.add_output("PR_release_body",release_body)
     else:
         version_info = get_version_info()
         if args.version:
