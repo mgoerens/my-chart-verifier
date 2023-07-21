@@ -1,8 +1,9 @@
 {
-    "version": "1.12.2",
+    "version": "1.12.3",
     "quay-image":  "quay.io/mgoerens/my-chart-verifier",
     "release-info": [
         "<ul>",
+        "<li>TEST RELEASE</li>",
         "<li>Use multiline parsing for run task (#376) by @komish</li>",
         "<li>Add commit ID to version output (#370) by @mgoerens</li>",
         "<li>apply kubecontext setting to kubectl client (#377) by @dcurran90</li>",
