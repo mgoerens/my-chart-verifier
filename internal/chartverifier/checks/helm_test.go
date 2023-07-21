@@ -25,7 +25,7 @@ import (
 	"github.com/stretchr/testify/require"
 	"helm.sh/helm/v3/pkg/cli"
 
-	"github.com/redhat-certification/chart-verifier/internal/testutil"
+	"github.com/redhat-certification/my-chart-verifier/internal/testutil"
 )
 
 func TestLoadChartFromURI(t *testing.T) {

@@ -6958,4 +6958,4 @@ Found image: 10.69.44.72/dishran/ue_conn_mgr:cucp-ue_conn_mgr-5.0.326.53
 --- PASS: TestImageParse (0.07s)
 FAIL
 exit status 1
-FAIL	github.com/redhat-certification/chart-verifier/internal/chartverifier/checks	3.357s
+FAIL	github.com/redhat-certification/my-chart-verifier/internal/chartverifier/checks	3.357s

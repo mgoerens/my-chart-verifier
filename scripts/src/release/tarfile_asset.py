@@ -3,12 +3,12 @@ import os
 import tarfile
 from utils import utils
 
-tar_content_files = [ {"name": "out/chart-verifier", "arc_name": "chart-verifier"} ]
+tar_content_files = [ {"name": "out/my-chart-verifier", "arc_name": "my-chart-verifier"} ]
 
 
 def create(release):
 
-    tgz_name = f"chart-verifier-{release}.tgz"
+    tgz_name = f"my-chart-verifier-{release}.tgz"
     utils.add_output("tarball_base_name",tgz_name)
 
     if os.path.exists(tgz_name):

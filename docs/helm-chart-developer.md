@@ -18,27 +18,27 @@ of the chart itself; for example, whether a `README.md` file exists, or whether 
 specification, implicating in offering a cache API layer is required to avoid downloading and unpacking the charts for
 each test.
 
-## Getting chart-verifier with Docker/Podman
+## Getting my-chart-verifier with Docker/Podman
 
-Container images built from the source code are hosted in https://quay.io/repository/redhat-certification/chart-verifier
+Container images built from the source code are hosted in https://quay.io/repository/redhat-certification/my-chart-verifier
 ; to download using `docker` execute the following command:
 
 ```text
-docker pull quay.io/redhat-certification/chart-verifier
+docker pull quay.io/redhat-certification/my-chart-verifier
 ```
 
-## Getting chart-verifier binary directly (Linux only)
+## Getting my-chart-verifier binary directly (Linux only)
 
-Alternatively, download `chart-verifier` binary from the [release page](https://github.com/redhat-certification/chart-verifier/releases) and run `chart-verifier verify` command to perform Helm chart checks.
+Alternatively, download `my-chart-verifier` binary from the [release page](https://github.com/redhat-certification/my-chart-verifier/releases) and run `my-chart-verifier verify` command to perform Helm chart checks.
 
-## Building chart-verifier
+## Building my-chart-verifier
 
-To build `chart-verifier` locally, execute `make bin` for macOS and Linux, or `make bin_win` for Windows.
+To build `my-chart-verifier` locally, execute `make bin` for macOS and Linux, or `make bin_win` for Windows.
 
-To build `chart-verifier` container image, execute `make build-image`:
+To build `my-chart-verifier` container image, execute `make build-image`:
 
 The container image created by the build program is tagged with the commit ID of the working directory at the time of
-the build: `quay.io/redhat-certification/chart-verifier:0d3706f`.
+the build: `quay.io/redhat-certification/my-chart-verifier:0d3706f`.
 
 ## Usage
 
@@ -47,24 +47,24 @@ the build: `quay.io/redhat-certification/chart-verifier:0d3706f`.
 To verify a chart against all available checks:
 
 ```text
-> out/chart-verifier verify ./chart.tgz
-> out/chart-verifier verify ~/src/chart
-> out/chart-verifier verify https://www.example.com/chart.tgz
+> out/my-chart-verifier verify ./chart.tgz
+> out/my-chart-verifier verify ~/src/chart
+> out/my-chart-verifier verify https://www.example.com/chart.tgz
 ```
 
 To apply only the `is-helm-v3` check:
 
 ```text
-> out/chart-verifier verify --enable is-helm-v3 https://www.example.com/chart.tgz
+> out/my-chart-verifier verify --enable is-helm-v3 https://www.example.com/chart.tgz
 ```
 
 To apply all checks except `is-helm-v3`:
 
 ```text
-> out/chart-verifier verify --disable is-helm-v3 https://www.example.com/chart.tgz
+> out/my-chart-verifier verify --disable is-helm-v3 https://www.example.com/chart.tgz
 ```
 
 ### Container Usage
 
-The container image produced in 'Building chart-verifier' can then be executed with the Docker client
-as `docker run -it --rm quay.io/redhat-certification/chart-verifier:0d3706f verify`.
+The container image produced in 'Building my-chart-verifier' can then be executed with the Docker client
+as `docker run -it --rm quay.io/redhat-certification/my-chart-verifier:0d3706f verify`.

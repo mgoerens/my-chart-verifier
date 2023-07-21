@@ -15,11 +15,11 @@ The following options are available for submitting a chart for Red Hat OpenShift
 
 | Option                                       | Description                                                                                                             |
 |----------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|
-| Helm chart Tarball or the extracted Tarball  | Submit your chart with the specific or the extracted tarball. Here the chart-verifier report is optional.             |
-| Verification report only                     | Submit your chart-verifier report without the chart.                                                                |
-| Both verification report and the chart       | Submit both the chart-verifier report and the chart by placing the source or tarball under the versioned directory. |
+| Helm chart Tarball or the extracted Tarball  | Submit your chart with the specific or the extracted tarball. Here the my-chart-verifier report is optional.             |
+| Verification report only                     | Submit your my-chart-verifier report without the chart.                                                                |
+| Both verification report and the chart       | Submit both the my-chart-verifier report and the chart by placing the source or tarball under the versioned directory. |
 
-> **_NOTE:_**  A chart-verifier report is an integral part of the submission process. With the options that do not require a report, a report will be generated as part of the submission process.
+> **_NOTE:_**  A my-chart-verifier report is an integral part of the submission process. With the options that do not require a report, a report will be generated as part of the submission process.
 
 > **_NOTE:_**  It is recommended when submitting a chart to submit chart source over a tarball. 
 
@@ -62,7 +62,7 @@ Web catalog only distribution method is then based on the following conditions:
     $ podman run --rm -i                                \
           -e KUBECONFIG=/.kube/config                   \
           -v "${HOME}/.kube":/.kube:z                   \
-          "quay.io/redhat-certification/chart-verifier" \
+          "quay.io/redhat-certification/my-chart-verifier" \
           verify --web-catalog-only                     \
           <chart-uri>
     ```

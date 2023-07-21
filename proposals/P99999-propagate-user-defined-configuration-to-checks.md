@@ -12,7 +12,7 @@ other words, any occasion the user needs to parametrize a check.
 
 ## Rationale
 
-`chart-verifier` is the command (either through a Container Runtime or directly using the program directly) users
+`my-chart-verifier` is the command (either through a Container Runtime or directly using the program directly) users
 interface to provide information regarding the verifications to be performed for a given chart, so it is expected that
 different parameters can be used at different moments in time.
 
@@ -27,11 +27,11 @@ Having both mechanisms to influence the verification session is very useful for 
 
 ## Usage
 
-Some changes are required in the `chart-verifier` program, more specifically in the `verify` command, where the
+Some changes are required in the `my-chart-verifier` program, more specifically in the `verify` command, where the
 flag `--set` should be introduced, as in the example below:
 
 ```text
-> chart-verifier verify --set compat.version=openshift-4.6 --enable compat chart.tgz
+> my-chart-verifier verify --set compat.version=openshift-4.6 --enable compat chart.tgz
 ```
 
 As the example above shows, the format of a `--set` flag is `KEY=VALUE`, where `KEY` is the path of the value in the
@@ -43,13 +43,13 @@ compatibility of the given chart, in this case against the `openshift-4.6` profi
 Another example related to the severity of the Helm linter check:
 
 ```text
-> chart-verifier verify --set linter.failWhen=ERROR --enable linter chart.tgz
+> my-chart-verifier verify --set linter.failWhen=ERROR --enable linter chart.tgz
 ```
 
 Both configurations could be use simultaneously by providing multiple `--set` flags:
 
 ```text
-> chart-verifier verify                \
+> my-chart-verifier verify                \
     --set compat.version=openshift-4.6 \
     --set linter.failWhen=ERROR        \
     --enable compat,linter             \
@@ -68,7 +68,7 @@ linter:
 The example below uses the configuration file above:
 
 ```text
-> chart-verifier verify --config openshift-4.6.yaml chart.tgz
+> my-chart-verifier verify --config openshift-4.6.yaml chart.tgz
 ```
 
 ## Checks API

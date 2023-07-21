@@ -29,10 +29,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/redhat-certification/chart-verifier/internal/chartverifier/checks"
-	"github.com/redhat-certification/chart-verifier/internal/chartverifier/profiles"
-	"github.com/redhat-certification/chart-verifier/internal/chartverifier/utils"
-	apiReport "github.com/redhat-certification/chart-verifier/pkg/chartverifier/report"
+	"github.com/redhat-certification/my-chart-verifier/internal/chartverifier/checks"
+	"github.com/redhat-certification/my-chart-verifier/internal/chartverifier/profiles"
+	"github.com/redhat-certification/my-chart-verifier/internal/chartverifier/utils"
+	apiReport "github.com/redhat-certification/my-chart-verifier/pkg/chartverifier/report"
 
 	helmchart "helm.sh/helm/v3/pkg/chart"
 )

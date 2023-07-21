@@ -21,7 +21,7 @@
 ## Verifier added annotations
 
 
-The chart-verifier tool adds annotations to a generated report.
+The my-chart-verifier tool adds annotations to a generated report.
 Example:
 
 ```
@@ -61,7 +61,7 @@ The annotations added differ based on the profile version used.
 
 ### verifier-version
 
-The version of the chart-verifier which generated the report. 
+The version of the my-chart-verifier which generated the report. 
 
 ### profile
 
@@ -69,13 +69,13 @@ This annotation includes the vendor type and version of the profile used to gene
 
 ### chart-uri
 
-The location of the chart specified to the chart-verifier. For report-only submissions, this must be the public url of the chart.
+The location of the chart specified to the my-chart-verifier. For report-only submissions, this must be the public url of the chart.
 
 ### digests
 
 This annotation can include the following digests:
 - digests.chart:
-    - sha:256 value of the chart as calculated from the copy of the chart loaded into memory by the chart-verifier.  
+    - sha:256 value of the chart as calculated from the copy of the chart loaded into memory by the my-chart-verifier.  
     - When submitting a report, this value must match the value generated as part of the submission process.
 - digest.package:
     - The sha value of the chart tarball if used to create the report.

@@ -29,7 +29,7 @@ var cfgFile string
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:   "chart-verifier",
+	Use:   "my-chart-verifier",
 	Short: "Certifies a Helm chart by checking some of its characteristics",
 }
 
@@ -44,7 +44,7 @@ func Execute() {
 
 func init() {
 	cobra.OnInitialize(initConfig)
-	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.chart-verifier.yaml)")
+	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.my-chart-verifier.yaml)")
 }
 
 // initConfig reads in config file and ENV variables if set.
@@ -60,9 +60,9 @@ func initConfig() {
 			os.Exit(1)
 		}
 
-		// Search config in home directory with name ".chart-verifier" (without extension).
+		// Search config in home directory with name ".my-chart-verifier" (without extension).
 		viper.AddConfigPath(home)
-		viper.SetConfigName(".chart-verifier")
+		viper.SetConfigName(".my-chart-verifier")
 	}
 
 	viper.AutomaticEnv() // read in environment variables that match

@@ -21,15 +21,15 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/redhat-certification/chart-verifier/internal/chartverifier/profiles"
+	"github.com/redhat-certification/my-chart-verifier/internal/chartverifier/profiles"
 
 	"github.com/spf13/viper"
 	"github.com/stretchr/testify/require"
 	"helm.sh/helm/v3/pkg/cli"
 
-	"github.com/redhat-certification/chart-verifier/internal/chartverifier/checks"
-	"github.com/redhat-certification/chart-verifier/internal/testutil"
-	apiReport "github.com/redhat-certification/chart-verifier/pkg/chartverifier/report"
+	"github.com/redhat-certification/my-chart-verifier/internal/chartverifier/checks"
+	"github.com/redhat-certification/my-chart-verifier/internal/testutil"
+	apiReport "github.com/redhat-certification/my-chart-verifier/pkg/chartverifier/report"
 )
 
 func isOk(c *apiReport.Report) bool {

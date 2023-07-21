@@ -7,7 +7,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/redhat-certification/chart-verifier/internal/chartverifier/utils"
+	"github.com/redhat-certification/my-chart-verifier/internal/chartverifier/utils"
 
 	"helm.sh/helm/v3/pkg/action"
 	"helm.sh/helm/v3/pkg/chart/loader"
@@ -114,7 +114,7 @@ func (h Helm) Test(ctx context.Context, namespace, release string) error {
 	client.Timeout = time.Until(deadline)
 
 	if client.Timeout <= 0 {
-		return errors.New("Helm test error : timeout has expired, please consider increasing the timeout using the chart-verifier timeout flag")
+		return errors.New("Helm test error : timeout has expired, please consider increasing the timeout using the my-chart-verifier timeout flag")
 	}
 	// TODO: support filter
 	_, err := client.Run(release)

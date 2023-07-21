@@ -12,9 +12,9 @@ import (
 	"github.com/stretchr/testify/require"
 	helmchart "helm.sh/helm/v3/pkg/chart"
 
-	"github.com/redhat-certification/chart-verifier/internal/chartverifier/profiles"
-	"github.com/redhat-certification/chart-verifier/internal/chartverifier/utils"
-	apireportsummary "github.com/redhat-certification/chart-verifier/pkg/chartverifier/reportsummary"
+	"github.com/redhat-certification/my-chart-verifier/internal/chartverifier/profiles"
+	"github.com/redhat-certification/my-chart-verifier/internal/chartverifier/utils"
+	apireportsummary "github.com/redhat-certification/my-chart-verifier/pkg/chartverifier/reportsummary"
 )
 
 func TestReport(t *testing.T) {

@@ -32,8 +32,8 @@ import (
 	"helm.sh/helm/v3/pkg/lint"
 	"helm.sh/helm/v3/pkg/lint/support"
 
-	"github.com/redhat-certification/chart-verifier/internal/chartverifier/pyxis"
-	"github.com/redhat-certification/chart-verifier/internal/tool"
+	"github.com/redhat-certification/my-chart-verifier/internal/chartverifier/pyxis"
+	"github.com/redhat-certification/my-chart-verifier/internal/tool"
 )
 
 const (

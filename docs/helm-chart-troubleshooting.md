@@ -138,13 +138,13 @@ For information on certifying images see: [Red Hat container certification](http
 ### `chart-testing` v1.0
 
 Chart testing runs the equivalant of `helm install ...` followed by `helm test...`. Try to run these independantly of 
-the chart-verifier and make a note of any flags or overrides that must be set for them both to work. Ensure these 
-values are set using chart-verifier flags when generating a report.
+the my-chart-verifier and make a note of any flags or overrides that must be set for them both to work. Ensure these 
+values are set using my-chart-verifier flags when generating a report.
 
-Also note that if chart-verifier flags are required for the chart-verifier chart-testing check to pass 
+Also note that if my-chart-verifier flags are required for the my-chart-verifier chart-testing check to pass 
 a verifier report must be included in the chart submission.
 
-If the check fails due to a timeout, increase the timeout values. If increased timeouts are required for the chart-verifier chart-testing check to pass
+If the check fails due to a timeout, increase the timeout values. If increased timeouts are required for the my-chart-verifier chart-testing check to pass
 a verifier report must be included in the chart submission. See: [Chart testing timeouts](./helm-chart-checks.md#chart-testing-timeouts)
 
 Run the chart verifier and set log_ouput to true to get additional information:
@@ -152,7 +152,7 @@ Run the chart verifier and set log_ouput to true to get additional information:
 $ podman run --rm -i \
           -e KUBECONFIG=/.kube/config \
           -v "${HOME}/.kube":/.kube:z \ 
-          "quay.io/redhat-certification/chart-verifier" \
+          "quay.io/redhat-certification/my-chart-verifier" \
           verify -l \
           <chart-uri>
 ```

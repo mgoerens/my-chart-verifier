@@ -9,11 +9,11 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	apireport "github.com/redhat-certification/chart-verifier/pkg/chartverifier/report"
+	apireport "github.com/redhat-certification/my-chart-verifier/pkg/chartverifier/report"
 )
 
 func TestAddStringReport(t *testing.T) {
-	chartURI := "https://github.com/redhat-certification/chart-verifier/blob/main/tests/charts/psql-service/0.1.9/psql-service-0.1.9.tgz?raw=true"
+	chartURI := "https://github.com/redhat-certification/my-chart-verifier/blob/main/tests/charts/psql-service/0.1.9/psql-service-0.1.9.tgz?raw=true"
 	yamlFileReport := "test-reports/report.yaml"
 	jsonFileReport := "test-reports/report.json"
 
@@ -56,7 +56,7 @@ func TestBadDigestReport(t *testing.T) {
 }
 
 func TestSkipBadDigestReport(t *testing.T) {
-	chartURI := "https://github.com/redhat-certification/chart-verifier/blob/main/tests/charts/psql-service/0.1.9/psql-service-0.1.9.tgz?raw=true"
+	chartURI := "https://github.com/redhat-certification/my-chart-verifier/blob/main/tests/charts/psql-service/0.1.9/psql-service-0.1.9.tgz?raw=true"
 	yamlFileReport := "test-reports/baddigest/report.yaml"
 	jsonFileReport := "test-reports/baddigest/report.json"
 
@@ -99,7 +99,7 @@ func TestMissingDigestReport(t *testing.T) {
 }
 
 func TestPreDigestReport(t *testing.T) {
-	chartURI := "https://github.com/redhat-certification/chart-verifier/blob/main/tests/charts/psql-service/0.1.9/psql-service-0.1.9.tgz?raw=true"
+	chartURI := "https://github.com/redhat-certification/my-chart-verifier/blob/main/tests/charts/psql-service/0.1.9/psql-service-0.1.9.tgz?raw=true"
 	yamlFileReport := "test-reports/predigest/report.yaml"
 	jsonFileReport := "test-reports/predigest/report.json"
 
@@ -141,7 +141,7 @@ func TestProviderDeliveryReport(t *testing.T) {
 }
 
 func TestAddUrlReport(t *testing.T) {
-	yamlURLReport := "https://github.com/redhat-certification/chart-verifier/blob/main/cmd/test/report.yaml?raw=true"
+	yamlURLReport := "https://github.com/redhat-certification/my-chart-verifier/blob/main/cmd/test/report.yaml?raw=true"
 	url, loadURLErr := url.Parse(yamlURLReport)
 	require.NoError(t, loadURLErr)
 

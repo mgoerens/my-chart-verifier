@@ -57,7 +57,7 @@ def image_type(image_type):
 def verifier_version(image_type):
     """Get the version of the chart verifier tool used to produce and verify reports.
 
-    This output comes directly from the output of `chart-verifier version`, which
+    This output comes directly from the output of `my-chart-verifier version`, which
     is the normalized to match what we would expect to find in a report.
 
     Parameters:
@@ -74,23 +74,23 @@ def verifier_version(image_type):
         image_tag = os.environ.get("PODMAN_IMAGE_TAG")
         if not image_tag:
             image_tag = "main"
-        image_name =  "quay.io/redhat-certification/chart-verifier"
+        image_name =  "quay.io/redhat-certification/my-chart-verifier"
         print(f"\nRun version using podman image {image_name}:{image_tag}")
         return run_version_podman_image(image_name,image_tag)
     else: # Fallback to Docker.
         image_tag  =  os.environ.get("VERIFIER_IMAGE_TAG")
         if not image_tag:
             image_tag = "main"
-        image_name =  "quay.io/redhat-certification/chart-verifier"
+        image_name =  "quay.io/redhat-certification/my-chart-verifier"
         print(f"\nRun version using docker image {image_name}:{image_tag}")
         return run_version_docker_image(image_name, image_tag)
 
-@when(parsers.parse("I run the chart-verifier verify command against the chart to generate a report"),target_fixture="run_verify")
+@when(parsers.parse("I run the my-chart-verifier verify command against the chart to generate a report"),target_fixture="run_verify")
 def run_verify(image_type, profile_type, chart_location):
     print(f"\nrun {image_type} verifier verify  with profile : {profile_type}, and chart: {chart_location}")
     return run_verifier(image_type, profile_type, chart_location,"verify")
 
-@when(parsers.parse("I run the chart-verifier verify command against the signed chart to generate a report"),target_fixture="run_signed_verify")
+@when(parsers.parse("I run the my-chart-verifier verify command against the signed chart to generate a report"),target_fixture="run_signed_verify")
 def run_signed_verify(image_type, profile_type, chart_location, public_key_location):
     print(f"\nrun {image_type} verifier verify  with profile : {profile_type}, and signed chart: {chart_location}")
     return run_verifier(image_type, profile_type, chart_location,"verify",public_key_location)
@@ -112,7 +112,7 @@ def run_verifier(image_type, profile_type, target_location, command,pgp_key_loca
         image_tag = os.environ.get("PODMAN_IMAGE_TAG")
         if not image_tag:
             image_tag = "main"
-        image_name =  "quay.io/redhat-certification/chart-verifier"
+        image_name =  "quay.io/redhat-certification/my-chart-verifier"
         print(f"\nRun {command} using podman image {image_name}:{image_tag}")
         if command == "verify":
             return run_verify_podman_image(image_name,image_tag,profile_type,target_location,pgp_key_location)
@@ -122,7 +122,7 @@ def run_verifier(image_type, profile_type, target_location, command,pgp_key_loca
         image_tag  =  os.environ.get("VERIFIER_IMAGE_TAG")
         if not image_tag:
             image_tag = "main"
-        image_name =  "quay.io/redhat-certification/chart-verifier"
+        image_name =  "quay.io/redhat-certification/my-chart-verifier"
         print(f"\nRun {command} using docker image {image_name}:{image_tag}")
         if command == "verify":
             return run_verify_docker_image(image_name,image_tag,profile_type,target_location,pgp_key_location)
@@ -226,7 +226,7 @@ def run_report_docker_image(verifier_image_name,verifier_image_tag,profile_type,
 def run_version_tarball_image(tarball_name):
     tar = tarfile.open(tarball_name, "r:gz")
     tar.extractall(path="./test_verifier")
-    out = subprocess.run(["./test_verifier/chart-verifier","version", "--as-data"],capture_output=True)
+    out = subprocess.run(["./test_verifier/my-chart-verifier","version", "--as-data"],capture_output=True)
     return normalize_version(out.stdout.decode("utf-8"))
 
 def normalize_version(version):
@@ -274,9 +274,9 @@ def run_verify_tarball_image(tarball_name,profile_type, chart_location,pgp_key_l
     tar.extractall(path="./test_verifier")
 
     if pgp_key_location:
-        out = subprocess.run(["./test_verifier/chart-verifier","verify","--set",f"profile.vendorType={profile_type}","--pgp-public-key",pgp_key_location,chart_location],capture_output=True)
+        out = subprocess.run(["./test_verifier/my-chart-verifier","verify","--set",f"profile.vendorType={profile_type}","--pgp-public-key",pgp_key_location,chart_location],capture_output=True)
     else:
-        out = subprocess.run(["./test_verifier/chart-verifier","verify","--set",f"profile.vendorType={profile_type}",chart_location],capture_output=True)
+        out = subprocess.run(["./test_verifier/my-chart-verifier","verify","--set",f"profile.vendorType={profile_type}",chart_location],capture_output=True)
 
     return out.stdout.decode("utf-8")
 
@@ -287,7 +287,7 @@ def run_report_tarball_image(tarball_name,profile_type, chart_location):
 
     tar.extractall(path="./test_verifier")
 
-    out = subprocess.run(["./test_verifier/chart-verifier","report","all","--set",f"profile.vendorType={profile_type}",chart_location],capture_output=True)
+    out = subprocess.run(["./test_verifier/my-chart-verifier","report","all","--set",f"profile.vendorType={profile_type}",chart_location],capture_output=True)
 
     return out.stdout.decode("utf-8")
 

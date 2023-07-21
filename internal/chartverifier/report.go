@@ -19,9 +19,9 @@ package chartverifier
 import (
 	"fmt"
 
-	"github.com/redhat-certification/chart-verifier/internal/chartverifier/checks"
-	apiChecks "github.com/redhat-certification/chart-verifier/pkg/chartverifier/checks"
-	apiReport "github.com/redhat-certification/chart-verifier/pkg/chartverifier/report"
+	"github.com/redhat-certification/my-chart-verifier/internal/chartverifier/checks"
+	apiChecks "github.com/redhat-certification/my-chart-verifier/pkg/chartverifier/checks"
+	apiReport "github.com/redhat-certification/my-chart-verifier/pkg/chartverifier/report"
 )
 
 var (

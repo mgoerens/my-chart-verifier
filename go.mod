@@ -1,4 +1,4 @@
-module github.com/redhat-certification/chart-verifier
+module github.com/redhat-certification/my-chart-verifier
 
 go 1.20
 

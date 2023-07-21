@@ -1,6 +1,6 @@
 # Helm chart checks for Red Hat OpenShift certification
 
-Helm chart checks are a set of checks against which the Red Hat Helm chart-verifier tool verifies and validates whether a Helm chart is qualified for a certification from Red Hat. These checks contain metadata that have certain parameters and values with which a Helm chart must comply to be certified by Red Hat. A Red Hat-certified Helm chart qualifies in terms of readiness for distribution in the [OpenShift Helm Chart Repository](https://github.com/openshift-helm-charts).
+Helm chart checks are a set of checks against which the Red Hat Helm my-chart-verifier tool verifies and validates whether a Helm chart is qualified for a certification from Red Hat. These checks contain metadata that have certain parameters and values with which a Helm chart must comply to be certified by Red Hat. A Red Hat-certified Helm chart qualifies in terms of readiness for distribution in the [OpenShift Helm Chart Repository](https://github.com/openshift-helm-charts).
 
 - [Helm chart checks for Red Hat OpenShift certification](#helm-chart-checks-for-red-hat-openshift-certification)
   - [Key features](#key-features)
@@ -45,7 +45,7 @@ Helm chart checks are categorized into the following types:
 | Recommended | Checks are about to become mandatory; we recommend fixing any check failures.
 | Optional | Checks are ready for customer testing. Checks can fail and still pass the verification for certification.
 | Experimental | New checks introduced for testing purposes or beta versions.
-> **_NOTE:_**  The current release of the chart-verifier includes only the mandatory and optional type of checks.
+> **_NOTE:_**  The current release of the my-chart-verifier includes only the mandatory and optional type of checks.
 
 ## Default set of checks for a Helm chart
 The following table lists the set of checks for each profile version with details including the name and version of the check, and a description of the check.
@@ -64,7 +64,7 @@ The following table lists the set of checks for each profile version with detail
 | [images-are-certified v1.1](helm-chart-troubleshooting.md#images-are-certified-v10) | [images-are-certified v1.0](helm-chart-troubleshooting.md#images-are-certified-v10) | [images-are-certified v1.0](helm-chart-troubleshooting.md#images-are-certified-v10) | Checks that the images referenced by the Helm chart are Red Hat-certified.
 | [helm-lint v1.0](helm-chart-troubleshooting.md#helm-lint-v10) | [helm-lint v1.0](helm-chart-troubleshooting.md#helm-lint-v10) | [helm-lint v1.0](helm-chart-troubleshooting.md#helm-lint-v10) | Checks that the chart is well formed by running the `helm lint` command.
 | [chart-testing v1.0](helm-chart-troubleshooting.md#chart-testing-v10) | [chart-testing v1.0](helm-chart-troubleshooting.md#chart-testing-v10) | [chart-testing v1.0](helm-chart-troubleshooting.md#chart-testing-v10)  | Installs the chart and verifies it on a Red Hat OpenShift Container Platform cluster.
-| [contains-values v1.0](helm-chart-troubleshooting.md#contains-values-v10) | [contains-values v1.0](helm-chart-troubleshooting.md#contains-values-v10)  | [contains-values  v1.0](helm-chart-troubleshooting.md#contains-values-v10) | Checks that the Helm chart contains the `values`[¹](https://github.com/redhat-certification/chart-verifier/blob/main/docs/helm-chart-checks.md#-for-more-information-on-the-values-file-see-values-and-best-practices-for-using-values) file.
+| [contains-values v1.0](helm-chart-troubleshooting.md#contains-values-v10) | [contains-values v1.0](helm-chart-troubleshooting.md#contains-values-v10)  | [contains-values  v1.0](helm-chart-troubleshooting.md#contains-values-v10) | Checks that the Helm chart contains the `values`[¹](https://github.com/redhat-certification/my-chart-verifier/blob/main/docs/helm-chart-checks.md#-for-more-information-on-the-values-file-see-values-and-best-practices-for-using-values) file.
 | [required-annotations-present v1.0](helm-chart-troubleshooting.md#required-annotations-present-v10) | [required-annotations-present v1.0](helm-chart-troubleshooting.md#required-annotations-present-v10) | - | Checks that the Helm chart contains the annotation: ```charts.openshift.io/name```.
 | [signature-is-valid v1.0](helm-chart-troubleshooting.md#signature-is-valid-v10) | - | - | Verifies a signed chart based on a provided public key |  
 #
@@ -72,7 +72,7 @@ The following table lists the set of checks for each profile version with detail
 
 ## Run Helm chart checks
 
-There are two ways to run Helm chart checks, either through [containers with `podman`/`docker` command](#using-the-podman-or-docker-command-for-helm-chart-checks), or [run the binary directly (Linux only)](#using-the-chart-verifier-binary-for-helm-chart-checks-linux-only).
+There are two ways to run Helm chart checks, either through [containers with `podman`/`docker` command](#using-the-podman-or-docker-command-for-helm-chart-checks), or [run the binary directly (Linux only)](#using-the-my-chart-verifier-binary-for-helm-chart-checks-linux-only).
 
 ### Using the podman or docker command for Helm chart checks
 This section provides help on the basic usage of Helm chart checks with the podman or docker command.
@@ -91,7 +91,7 @@ This section provides help on the basic usage of Helm chart checks with the podm
   $ podman run --rm -i                                  \
           -e KUBECONFIG=/.kube/config:z                 \
           -v "${HOME}/.kube":/.kube:z                   \
-          "quay.io/redhat-certification/chart-verifier" \
+          "quay.io/redhat-certification/my-chart-verifier" \
           verify                                        \
           <chart-uri>
   ```
@@ -102,21 +102,21 @@ This section provides help on the basic usage of Helm chart checks with the podm
           -e KUBECONFIG=/.kube/config                   \
           -v "${HOME}/.kube":/.kube:z                   \
           -v $(pwd):/charts:z                           \
-          "quay.io/redhat-certification/chart-verifier" \
+          "quay.io/redhat-certification/my-chart-verifier" \
           verify                                        \
           /charts/<chart>
   ```
 - Get the list of options for the `verify` command:
 
   ```
-  $ podman run -it --rm quay.io/redhat-certification/chart-verifier verify help
+  $ podman run -it --rm quay.io/redhat-certification/my-chart-verifier verify help
   ```
   The output is similar to the following example:
   ```
   Verifies a Helm chart by checking some of its characteristics
 
   Usage:
-    chart-verifier verify <chart-uri> [flags]
+    my-chart-verifier verify <chart-uri> [flags]
 
   Flags:
     -S, --chart-set strings           set values for the chart (can specify multiple or separate values with commas: key1=val1,key2=val2)
@@ -149,7 +149,7 @@ This section provides help on the basic usage of Helm chart checks with the podm
         --timeout duration            time to wait for completion of chart install and test (default 30m0s)
     -w, --write-to-file               write report to ./chartverifier/report.yaml (default: stdout)
   Global Flags:
-        --config string   config file (default is $HOME/.chart-verifier.yaml)
+        --config string   config file (default is $HOME/.my-chart-verifier.yaml)
   ```
 - Run a subset of the checks:
 
@@ -157,7 +157,7 @@ This section provides help on the basic usage of Helm chart checks with the podm
   $ podman run --rm -i                                  \
           -e KUBECONFIG=/.kube/config                   \
           -v "${HOME}/.kube":/.kube:z                   \
-          "quay.io/redhat-certification/chart-verifier" \
+          "quay.io/redhat-certification/my-chart-verifier" \
           verify -e images-are-certified,helm-lint      \
           <chart-uri>
 
@@ -168,7 +168,7 @@ This section provides help on the basic usage of Helm chart checks with the podm
   $ podman run --rm -i                                  \
           -e KUBECONFIG=/.kube/config                   \
           -v "${HOME}/.kube":/.kube:z                   \
-          "quay.io/redhat-certification/chart-verifier" \
+          "quay.io/redhat-certification/my-chart-verifier" \
           verify -x images-are-certified,helm-lint      \
           <chart-uri>
     ```
@@ -178,7 +178,7 @@ This section provides help on the basic usage of Helm chart checks with the podm
   $ podman run --rm -i                                  \
           -e KUBECONFIG=/.kube/config                   \
           -v "${HOME}/.kube":/.kube:z                   \
-          "quay.io/redhat-certification/chart-verifier" \
+          "quay.io/redhat-certification/my-chart-verifier" \
           verify -S default.port=8080                   \
           <chart-uri>
   ```
@@ -189,7 +189,7 @@ This section provides help on the basic usage of Helm chart checks with the podm
           -e KUBECONFIG=/.kube/config                   \
           -v "${HOME}/.kube":/.kube:z                   \
           -v $(pwd):/values:z                           \
-          "quay.io/redhat-certification/chart-verifier" \
+          "quay.io/redhat-certification/my-chart-verifier" \
           verify -F /values/overrides.yaml              \
           <chart-uri>
   ```
@@ -203,7 +203,7 @@ Increase the timeout value if chart-testing is going to take more time, default 
           -e KUBECONFIG=/.kube/config                   \
           -v "${HOME}/.kube":/.kube:z                   \
           -v $(pwd):/values:z                           \
-          "quay.io/redhat-certification/chart-verifier" \
+          "quay.io/redhat-certification/my-chart-verifier" \
           verify --timeout 40m                          \
           <chart-uri>
   ```
@@ -217,7 +217,7 @@ By default the report is written to stdout which can be redirected to a file. Fo
   $ podman run --rm -i                                  \
           -e KUBECONFIG=/.kube/config                   \
           -v "${HOME}/.kube":/.kube:z                   \
-          "quay.io/redhat-certification/chart-verifier" \
+          "quay.io/redhat-certification/my-chart-verifier" \
           verify -e images-are-certified,helm-lint      \
           <chart-uri> > report.yaml
 
@@ -231,7 +231,7 @@ Alternatively, use the ```-w```  option to write the report directly to the file
           -v "${HOME}/.kube":/.kube:z                   \
           -v $(pwd)/chartverifier:/app/chartverifier:z  \
           -w                                            \
-          "quay.io/redhat-certification/chart-verifier" \
+          "quay.io/redhat-certification/my-chart-verifier" \
           verify -e images-are-certified,helm-lint      \
           <chart-uri>
 
@@ -247,7 +247,7 @@ By default an error log is written to  file ```./chartverifier/verify-<timestamp
           -e KUBECONFIG=/.kube/config                   \
           -v "${HOME}/.kube":/.kube:z                   \
           -v $(pwd)/chartverifier:/app/chartverifier:z  \
-          "quay.io/redhat-certification/chart-verifier" \
+          "quay.io/redhat-certification/my-chart-verifier" \
           verify -e images-are-certified,helm-lint      \
           <chart-uri> > report.yaml
 
@@ -260,15 +260,15 @@ Use the ```-E``` flag to suppress error log output.
 Note: Error and warning messages are also output to stderr and are not suppressed by the ```-E``` option.
 
 
-### Using the `chart-verifier` binary for Helm chart checks (Linux only)
+### Using the `my-chart-verifier` binary for Helm chart checks (Linux only)
 
-Alternatively, download `chart-verifier` binary from the [release page](https://github.com/redhat-certification/chart-verifier/releases), unzip the tarball with `tar zxvf <tarball>`, and run `./chart-verifier verify` under the unzipped directory to perform Helm chart checks. Refer to the [procedures](#procedure) in the podman/docker section, for example,
+Alternatively, download `my-chart-verifier` binary from the [release page](https://github.com/redhat-certification/my-chart-verifier/releases), unzip the tarball with `tar zxvf <tarball>`, and run `./my-chart-verifier verify` under the unzipped directory to perform Helm chart checks. Refer to the [procedures](#procedure) in the podman/docker section, for example,
 
 ```
 $ podman run --rm -i                                  \
         -e KUBECONFIG=/.kube/config                   \
         -v "${HOME}/.kube":/.kube:z                   \
-        "quay.io/redhat-certification/chart-verifier" \
+        "quay.io/redhat-certification/my-chart-verifier" \
         verify                                        \
         <chart-uri>
 ```
@@ -276,10 +276,10 @@ $ podman run --rm -i                                  \
 will become
 
 ```
-$ ./chart-verifier verify <chart-uri>
+$ ./my-chart-verifier verify <chart-uri>
 ```
 
-By default, `chart-verifier` will assume kubeconfig is under $HOME/.kube, set environment variable KUBECONFIG for different kubeconfig file.
+By default, `my-chart-verifier` will assume kubeconfig is under $HOME/.kube, set environment variable KUBECONFIG for different kubeconfig file.
 
 ## Profiles
 
@@ -395,7 +395,7 @@ For example:
 $ podman run --rm -i                                                    \
           -e KUBECONFIG=/.kube/config                                   \
           -v "${HOME}/.kube":/.kube:z                                   \
-          "quay.io/redhat-certification/chart-verifier"                 \
+          "quay.io/redhat-certification/my-chart-verifier"                 \
           verify --set profile.vendorType=partner, profile.version=v1.1 \
           <chart-uri>
 ```
@@ -408,7 +408,7 @@ You can configure the chart-testing check by performing one of the following ste
 
 * Option 1: Through the `--set` command line option:
     ```text
-    $ chart-verifier                                                  \
+    $ my-chart-verifier                                                  \
         verify                                                        \
         --enable chart-testing                                        \
         --set chart-testing.buildId=${BUILD_ID}                       \
@@ -432,7 +432,7 @@ You can configure the chart-testing check by performing one of the following ste
 
     Specify the file using the `--set-values` command line option:
     ```text
-    $ chart-verifier verify --enable chart-testing --set-values config.yaml some-chart.tgz
+    $ my-chart-verifier verify --enable chart-testing --set-values config.yaml some-chart.tgz
     ```
 
     All settings are optional, if not set default values will be used.

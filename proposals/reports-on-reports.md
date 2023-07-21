@@ -12,9 +12,9 @@ The new command is therefore design primarily for use from the workflow to isola
 
 # Command specs
 
-```chart-verifier report <subcommand> <options> <report-uri>```
+```my-chart-verifier report <subcommand> <options> <report-uri>```
 
-```chart-verifier profile <subcommand> <options>```
+```my-chart-verifier profile <subcommand> <options>```
 
 ## Sub-Commands
 
@@ -66,31 +66,31 @@ The new command is therefore design primarily for use from the workflow to isola
 
 ### report metadata
 
-command: ```chart-verifier report metadata report.yaml```
+command: ```my-chart-verifier report metadata report.yaml```
 
 ```{ "metadata": { "vendorType": "redhat", "profileVersion": "v1.1" } } ```
 
 ### report digests
 
-command: ```chart-verifier report digests report.yaml```
+command: ```my-chart-verifier report digests report.yaml```
 
 ```{ "digests": { "chart": "88888", "package": "8f9b3c" } } ```
 
 ### report annotations
 
-command: ```chart-verifier report annotations report.yaml```
+command: ```my-chart-verifier report annotations report.yaml```
 
 ```{ "annotations": [{ "Name" : "OCPVersion", "Value" : "4.7.8"},{ "Name" : "digest", "Value" : "88888"},{ "Name" : "LastCertifiedTimestamp", "Value" : "2021-06-29T08:57:35.0023-04:00" }] }```
 
 ### report results
 
-command: ```chart-verifier report results report.yaml```
+command: ```my-chart-verifier report results report.yaml```
 
 ```{ "results": { "success": 11, "fail": 1, Messages [ "Mandatory check chart-testing not found"] }```
 
 ### report Full
 
-command: ```chart-verifier report all report.yaml```
+command: ```my-chart-verifier report all report.yaml```
 
 ```
 { "metadata": { "vendorType": "redhat", "profileVersion": "v1.1" },
@@ -101,14 +101,14 @@ command: ```chart-verifier report all report.yaml```
 
 ## profile list
 
-command: ```chart-verifier profile list```
+command: ```my-chart-verifier profile list```
 ```
 { "profiles": [{"type": "partner", "version": "v1.1"},{"type": "redhat", "version": "v1.1"},{"type": "community", "version": "v1.1"}]} 
 ```
 
 ## profile show -s profile.vendortype=partner, profile.version=v1.1
 
-command: ```chart-verifier profile show -s profile.vendortype=partner, profile.version=v1.1```
+command: ```my-chart-verifier profile show -s profile.vendortype=partner, profile.version=v1.1```
 
 ```
 apiversion: v1

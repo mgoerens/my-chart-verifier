@@ -8,10 +8,10 @@ RUN make bin
 
 FROM registry.access.redhat.com/ubi9/ubi-minimal
 
-COPY --from=build /tmp/src/out/chart-verifier /app/chart-verifier
+COPY --from=build /tmp/src/out/my-chart-verifier /app/my-chart-verifier
 
 WORKDIR /app
 
 ENV PATH "$PATH:/app"
 
-ENTRYPOINT ["/app/chart-verifier"]
+ENTRYPOINT ["/app/my-chart-verifier"]

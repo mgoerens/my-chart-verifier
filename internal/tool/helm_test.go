@@ -275,7 +275,7 @@ func TestReleaseTesting(t *testing.T) {
 				Namespace: "default",
 				Hooks:     testHooks,
 			},
-			expected: "Helm test error : timeout has expired, please consider increasing the timeout using the chart-verifier timeout flag",
+			expected: "Helm test error : timeout has expired, please consider increasing the timeout using the my-chart-verifier timeout flag",
 			timeout:  -1 * time.Second,
 		},
 	}

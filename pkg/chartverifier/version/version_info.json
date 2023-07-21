@@ -1,6 +1,6 @@
 {
     "version": "1.12.2",
-    "quay-image":  "quay.io/redhat-certification/chart-verifier",
+    "quay-image":  "quay.io/redhat-certification/my-chart-verifier",
     "release-info": [
         "<ul>",
         "<li>Use multiline parsing for run task (#376) by @komish</li>",

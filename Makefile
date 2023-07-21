@@ -35,8 +35,8 @@ fmt: install.gofumpt
 .PHONY: bin
 bin:
 	CGO_ENABLED=0 go build \
-		-ldflags "-X 'github.com/redhat-certification/chart-verifier/cmd.CommitIDLong=$(COMMIT_ID_LONG)'" \
-		-o ./out/chart-verifier main.go
+		-ldflags "-X 'github.com/redhat-certification/my-chart-verifier/cmd.CommitIDLong=$(COMMIT_ID_LONG)'" \
+		-o ./out/my-chart-verifier main.go
 
 .PHONY: lint
 lint: install.golangci-lint
@@ -45,8 +45,8 @@ lint: install.golangci-lint
 .PHONY: bin_win
 bin_win:
 	env GOOS=windows GOARCH=amd64 CGO_ENABLED=0 go build \
-		-ldflags "-X 'github.com/redhat-certification/chart-verifier/cmd.CommitIDLong=$(COMMIT_ID_LONG)'" \
-		-o .\out\chart-verifier.exe main.go
+		-ldflags "-X 'github.com/redhat-certification/my-chart-verifier/cmd.CommitIDLong=$(COMMIT_ID_LONG)'" \
+		-o .\out\my-chart-verifier.exe main.go
 
 .PHONY: test
 test:
@@ -54,7 +54,7 @@ test:
 
 .PHONY: build-image
 build-image:
-	$(IMAGE_BUILDER) build -t $(IMAGE_REPO)/chart-verifier:$(COMMIT_ID) .
+	$(IMAGE_BUILDER) build -t $(IMAGE_REPO)/my-chart-verifier:$(COMMIT_ID) .
 
 .PHONY: gosec
 gosec: install.gosec

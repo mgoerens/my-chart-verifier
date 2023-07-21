@@ -7,16 +7,16 @@ IMPORTANT:
 
 ## Overview
 
-The chart-verifier API is written using the Go language and is created to enable services to run the chart verifier and obtain a report.
-Use the chart-verifier API the same way as any Go package such as import and invoke. 
+The my-chart-verifier API is written using the Go language and is created to enable services to run the chart verifier and obtain a report.
+Use the my-chart-verifier API the same way as any Go package such as import and invoke. 
 
-The chart-verifier API consists of the following Go language packages:
+The my-chart-verifier API consists of the following Go language packages:
 
 | Package | Description 
 | --------| -------------
-| [verifier](#verifier) | Provides an API to set the verify flags for the chart-verifier and run the verifier to generate a report. 
+| [verifier](#verifier) | Provides an API to set the verify flags for the my-chart-verifier and run the verifier to generate a report. 
 | [report](#report) | Provides an API to get and set report content as a string in the JSON or YAML format. 
-| [reportSummary](#reportsummary) | Provides an API to set the report flags for the chart-verifier and generate a report summary. 
+| [reportSummary](#reportsummary) | Provides an API to set the report flags for the my-chart-verifier and generate a report summary. 
 | [checks](#checks) | Provides an API to get a set containing all available checks. 
 
 Each of these packages are now described in more detail. These are followed by an [example](#example) of use.
@@ -170,23 +170,23 @@ func GetChecks() []CheckName
 
 # Example:
 
-This example shows a basic invocation of the chart-verifier API, getting and printing the resulting report and the report summary of the report.
+This example shows a basic invocation of the my-chart-verifier API, getting and printing the resulting report and the report summary of the report.
 
 Note: 
 - The example does not include error checking code for clarity purposes.
-  - The example with error checking is available [here](https://github.com/redhat-certification/chart-verifier/blob/main/pkg/chartverifier/samples/sample.go).
-- For full use of the chart-verifier see:
-    - [https://github.com/redhat-certification/chart-verifier/blob/main/cmd/verify.go](https://github.com/redhat-certification/chart-verifier/blob/main/cmd/verify.go)
-    - [https://github.com/redhat-certification/chart-verifier/blob/main/cmd/report.go](https://github.com/redhat-certification/chart-verifier/blob/main/cmd/report.go)
+  - The example with error checking is available [here](https://github.com/redhat-certification/my-chart-verifier/blob/main/pkg/chartverifier/samples/sample.go).
+- For full use of the my-chart-verifier see:
+    - [https://github.com/redhat-certification/my-chart-verifier/blob/main/cmd/verify.go](https://github.com/redhat-certification/my-chart-verifier/blob/main/cmd/verify.go)
+    - [https://github.com/redhat-certification/my-chart-verifier/blob/main/cmd/report.go](https://github.com/redhat-certification/my-chart-verifier/blob/main/cmd/report.go)
 
-1. Import the packages of the chart-verifier API:
+1. Import the packages of the my-chart-verifier API:
 ```
 import (
 	"fmt"
-	"github.com/redhat-certification/chart-verifier/pkg/chartverifier/checks"
-	"github.com/redhat-certification/chart-verifier/pkg/chartverifier/report"
-	"github.com/redhat-certification/chart-verifier/pkg/chartverifier/reportsummary"
-	"github.com/redhat-certification/chart-verifier/pkg/chartverifier/verifier"
+	"github.com/redhat-certification/my-chart-verifier/pkg/chartverifier/checks"
+	"github.com/redhat-certification/my-chart-verifier/pkg/chartverifier/report"
+	"github.com/redhat-certification/my-chart-verifier/pkg/chartverifier/reportsummary"
+	"github.com/redhat-certification/my-chart-verifier/pkg/chartverifier/verifier"
 )
 ```
 
@@ -199,7 +199,7 @@ import (
 	verifier, verifierErr := verifier.NewVerifier().
 		SetValues(verifier.CommandSet, commandSet).
 		UnEnableChecks([]checks.CheckName{checks.ChartTesting}).
-		Run("https://github.com/redhat-certification/chart-verifier/blob/main/tests/charts/psql-service/0.1.9/psql-service-0.1.9.tgz?raw=true")
+		Run("https://github.com/redhat-certification/my-chart-verifier/blob/main/tests/charts/psql-service/0.1.9/psql-service-0.1.9.tgz?raw=true")
 
 ```
 3. Get and print the report, created from the previous step, in the YAML format:

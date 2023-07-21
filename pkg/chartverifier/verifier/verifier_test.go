@@ -7,11 +7,11 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/redhat-certification/chart-verifier/internal/tool"
-	apichecks "github.com/redhat-certification/chart-verifier/pkg/chartverifier/checks"
-	apireport "github.com/redhat-certification/chart-verifier/pkg/chartverifier/report"
-	apireportsummary "github.com/redhat-certification/chart-verifier/pkg/chartverifier/reportsummary"
-	apiversion "github.com/redhat-certification/chart-verifier/pkg/chartverifier/version"
+	"github.com/redhat-certification/my-chart-verifier/internal/tool"
+	apichecks "github.com/redhat-certification/my-chart-verifier/pkg/chartverifier/checks"
+	apireport "github.com/redhat-certification/my-chart-verifier/pkg/chartverifier/report"
+	apireportsummary "github.com/redhat-certification/my-chart-verifier/pkg/chartverifier/reportsummary"
+	apiversion "github.com/redhat-certification/my-chart-verifier/pkg/chartverifier/version"
 )
 
 func TestVerifyApi(t *testing.T) {

@@ -3,7 +3,7 @@ package profiles
 import (
 	"fmt"
 
-	apiChecks "github.com/redhat-certification/chart-verifier/pkg/chartverifier/checks"
+	apiChecks "github.com/redhat-certification/my-chart-verifier/pkg/chartverifier/checks"
 )
 
 const (

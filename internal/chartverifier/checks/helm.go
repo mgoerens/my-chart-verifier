@@ -40,8 +40,8 @@ import (
 	"helm.sh/helm/v3/pkg/storage"
 	"helm.sh/helm/v3/pkg/storage/driver"
 
-	"github.com/redhat-certification/chart-verifier/internal/helm/actions"
-	"github.com/redhat-certification/chart-verifier/internal/tool"
+	"github.com/redhat-certification/my-chart-verifier/internal/helm/actions"
+	"github.com/redhat-certification/my-chart-verifier/internal/tool"
 )
 
 // loadChartFromRemote attempts to retrieve a Helm chart from the given remote url. Returns an error if the given url
@@ -278,5 +278,5 @@ func getCacheDir(opts *CheckOptions) string {
 			return ""
 		}
 	}
-	return path.Join(cacheDir, "chart-verifier")
+	return path.Join(cacheDir, "my-chart-verifier")
 }

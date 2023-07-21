@@ -8,10 +8,10 @@ import (
 	"golang.org/x/mod/semver"
 	"gopkg.in/yaml.v3"
 
-	"github.com/redhat-certification/chart-verifier/internal/chartverifier/checks"
-	"github.com/redhat-certification/chart-verifier/internal/chartverifier/utils"
-	"github.com/redhat-certification/chart-verifier/internal/profileconfig"
-	apiChecks "github.com/redhat-certification/chart-verifier/pkg/chartverifier/checks"
+	"github.com/redhat-certification/my-chart-verifier/internal/chartverifier/checks"
+	"github.com/redhat-certification/my-chart-verifier/internal/chartverifier/utils"
+	"github.com/redhat-certification/my-chart-verifier/internal/profileconfig"
+	apiChecks "github.com/redhat-certification/my-chart-verifier/pkg/chartverifier/checks"
 )
 
 type (

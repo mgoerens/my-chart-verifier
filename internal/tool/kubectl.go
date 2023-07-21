@@ -19,7 +19,7 @@ import (
 	"k8s.io/client-go/tools/clientcmd"
 	"k8s.io/kubectl/pkg/scheme"
 
-	"github.com/redhat-certification/chart-verifier/internal/chartverifier/utils"
+	"github.com/redhat-certification/my-chart-verifier/internal/chartverifier/utils"
 )
 
 //go:embed kubeOpenShiftVersionMap.yaml
@@ -136,7 +136,7 @@ func (k Kubectl) WaitForDeployments(context context.Context, namespace string, s
 		return errors.New(errorMsg)
 	}
 	if len(unavailableDeployments) > 0 {
-		errorMsg := "error unavailable deployments, timeout has expired, please consider increasing the timeout using the chart-verifier --timeout flag"
+		errorMsg := "error unavailable deployments, timeout has expired, please consider increasing the timeout using the my-chart-verifier --timeout flag"
 		utils.LogError(errorMsg)
 		return errors.New(errorMsg)
 	}

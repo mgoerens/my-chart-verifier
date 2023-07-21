@@ -92,13 +92,13 @@ opaque to the main process.
 The version to be matched against should be informed via the command line interface using the `--set` flag:
 
 ```text
-> chart-verifier verify --enable compat --set compat.version=openshift-4.6 chart.tgz
+> my-chart-verifier verify --enable compat --set compat.version=openshift-4.6 chart.tgz
 ```
 
 To validate against multiple versions, a comma separated list could be used:
 
 ```text
-> chart-verifier verify --enable compat --set compat.version=openshift-4.6,openshift-4.7 chart.tgz
+> my-chart-verifier verify --enable compat --set compat.version=openshift-4.6,openshift-4.7 chart.tgz
 ```
 
 ## Configuration
@@ -113,7 +113,7 @@ compat:
 Then used as:
 
 ```text
-> chart-verifier verify --config cv.yaml --enable compat chart.tgz
+> my-chart-verifier verify --config cv.yaml --enable compat chart.tgz
 ```
 
 # References

@@ -4,7 +4,7 @@ Used by a github action to build a test a chart verifier docker image based on a
 parameters:
     ---image-name : Name to be used for the chart verifier image.
     --sha-value : Sha value to be used for the image.
-    --verifier-version : Version of the chart-verifier to test.
+    --verifier-version : Version of the my-chart-verifier to test.
 
 results:
     exit code 1 if the image fails to build or a test fails.
@@ -83,7 +83,7 @@ def test_image(image_id,chart,verifier_version):
     # sample output: {"version":"1.12.0","commit":"4dcd90a273747df545df2c4414f091caa8b0eb3d"}
     out = client.containers.run(image_id, docker_command, stdin_open=True, tty=True, stderr=True)
     if not out or out["version"] != verifier_version:
-        print(f"[ERROR] 'chart-verifier version' output {out} does not match expected version: {verifier_version}")
+        print(f"[ERROR] 'my-chart-verifier version' output {out} does not match expected version: {verifier_version}")
 
     print("[INFO] report:\n", report)
     with open(report_path, "w") as fd:
@@ -130,7 +130,7 @@ def main():
 
         if not args.build_only:
 
-            chart = {"url" : "https://github.com/redhat-certification/chart-verifier/blob/main/internal/chartverifier/checks/chart-0.1.0-v3.valid.tgz?raw=true",
+            chart = {"url" : "https://github.com/redhat-certification/my-chart-verifier/blob/main/internal/chartverifier/checks/chart-0.1.0-v3.valid.tgz?raw=true",
                 "results":{"passed":"10","failed":"1"},
                 "metadata":{"vendorType":"partner","profileVersion":"v1.0"}}
 

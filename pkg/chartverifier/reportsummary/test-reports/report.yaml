@@ -7,7 +7,7 @@ metadata:
             VendorType: partner
             version: v1.2
         reportDigest: uint64:15548416190925456782
-        chart-uri: https://github.com/redhat-certification/chart-verifier/blob/main/tests/charts/psql-service/0.1.9/psql-service-0.1.9.tgz?raw=true
+        chart-uri: https://github.com/redhat-certification/my-chart-verifier/blob/main/tests/charts/psql-service/0.1.9/psql-service-0.1.9.tgz?raw=true
         digests:
             chart: sha256:49fceb6b1451748de906ae98339d442e68c8ba832b79a1f98d306c4878d30797
             package: 5b390fc65bc1e15024eb03cf852a435ab930705deae3040b9a869f3a571db714

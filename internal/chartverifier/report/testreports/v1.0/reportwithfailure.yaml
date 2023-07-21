@@ -82,6 +82,6 @@ results:
       type: Mandatory
       outcome: FAIL
       reason: |-
-          Error running process: executing helm with args "install chart-etagd5fk9g /Users/martinmulholland/Library/Caches/chart-verifier/internal_chartverifier_checks_chart_0_1_0_v3_valid_tgz/chart --namespace default --wait --values /var/folders/19/zzj4wrnj1_g1wdtt_zn61_tm0000gn/T/chart-testing-562801935/values.yaml": exit status 1
+          Error running process: executing helm with args "install chart-etagd5fk9g /Users/martinmulholland/Library/Caches/my-chart-verifier/internal_chartverifier_checks_chart_0_1_0_v3_valid_tgz/chart --namespace default --wait --values /var/folders/19/zzj4wrnj1_g1wdtt_zn61_tm0000gn/T/chart-testing-562801935/values.yaml": exit status 1
           ---
           Error: Kubernetes cluster unreachable: the server has asked for the client to provide credentials

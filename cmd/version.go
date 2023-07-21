@@ -9,7 +9,7 @@ import (
 
 	"github.com/spf13/cobra"
 
-	apiversion "github.com/redhat-certification/chart-verifier/pkg/chartverifier/version"
+	apiversion "github.com/redhat-certification/my-chart-verifier/pkg/chartverifier/version"
 )
 
 // Print version and commit ID as json blob
@@ -36,7 +36,7 @@ var Version = VersionContext{
 func NewVersionCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "version",
-		Short: "print the chart-verifier version information",
+		Short: "print the my-chart-verifier version information",
 		Args:  cobra.NoArgs,
 		RunE: func(cmd *cobra.Command, args []string) error {
 			return runVersion(os.Stdout)
@@ -56,6 +56,6 @@ func runVersion(out io.Writer) error {
 		return nil
 	}
 
-	fmt.Fprintf(out, "chart-verifier v%s <commit: %s>\n", apiversion.GetVersion(), CommitIDLong)
+	fmt.Fprintf(out, "my-chart-verifier v%s <commit: %s>\n", apiversion.GetVersion(), CommitIDLong)
 	return nil
 }

@@ -25,8 +25,8 @@ import (
 	"github.com/stretchr/testify/require"
 	"helm.sh/helm/v3/pkg/cli"
 
-	"github.com/redhat-certification/chart-verifier/internal/chartverifier/pyxis"
-	"github.com/redhat-certification/chart-verifier/internal/tool"
+	"github.com/redhat-certification/my-chart-verifier/internal/chartverifier/pyxis"
+	"github.com/redhat-certification/my-chart-verifier/internal/tool"
 )
 
 func TestIsHelmV3(t *testing.T) {
@@ -580,7 +580,7 @@ func TestSignatureIsValid(t *testing.T) {
 		},
 		{
 			description: "signed chart with no key",
-			uri:         "https://github.com/redhat-certification/chart-verifier/blob/main/tests/charts/psql-service/0.1.11/psql-service-0.1.11.tgz?raw=true",
+			uri:         "https://github.com/redhat-certification/my-chart-verifier/blob/main/tests/charts/psql-service/0.1.11/psql-service-0.1.11.tgz?raw=true",
 			keyFile:     "",
 			reason:      fmt.Sprintf("%s : %s", ChartSigned, SignatureNoKey),
 			ok:          true, skipped: true,

@@ -14,8 +14,8 @@ import (
 	"gopkg.in/yaml.v3"
 	"helm.sh/helm/v3/pkg/cli"
 
-	"github.com/redhat-certification/chart-verifier/internal/chartverifier/utils"
-	"github.com/redhat-certification/chart-verifier/internal/tool"
+	"github.com/redhat-certification/my-chart-verifier/internal/chartverifier/utils"
+	"github.com/redhat-certification/my-chart-verifier/internal/tool"
 )
 
 const (
@@ -91,14 +91,14 @@ func buildChartTestingConfiguration(opts *CheckOptions) config.Configuration {
 	return cfg
 }
 
-// ChartTesting partially integrates the chart-testing project in chart-verifier.
+// ChartTesting partially integrates the chart-testing project in my-chart-verifier.
 //
 // Unfortunately it wasn't easy as initially expect to integrate
 // chart-testing as a lib in the project, including the main
 // orchestration logic. The ChartTesting function is the
 // interpretation the main logic chart-testing carries, and other
 // functions used in this context were also ported from
-// chart-verifier.
+// my-chart-verifier.
 func ChartTesting(opts *CheckOptions) (Result, error) {
 	utils.LogInfo("Start chart install and test check")
 

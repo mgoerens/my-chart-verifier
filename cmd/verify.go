@@ -22,12 +22,12 @@ import (
 	"strings"
 	"time"
 
-	"github.com/redhat-certification/chart-verifier/internal/chartverifier/utils"
-	"github.com/redhat-certification/chart-verifier/internal/tool"
-	apiChecks "github.com/redhat-certification/chart-verifier/pkg/chartverifier/checks"
-	apireport "github.com/redhat-certification/chart-verifier/pkg/chartverifier/report"
-	apiverifier "github.com/redhat-certification/chart-verifier/pkg/chartverifier/verifier"
-	apiversion "github.com/redhat-certification/chart-verifier/pkg/chartverifier/version"
+	"github.com/redhat-certification/my-chart-verifier/internal/chartverifier/utils"
+	"github.com/redhat-certification/my-chart-verifier/internal/tool"
+	apiChecks "github.com/redhat-certification/my-chart-verifier/pkg/chartverifier/checks"
+	apireport "github.com/redhat-certification/my-chart-verifier/pkg/chartverifier/report"
+	apiverifier "github.com/redhat-certification/my-chart-verifier/pkg/chartverifier/verifier"
+	apiversion "github.com/redhat-certification/my-chart-verifier/pkg/chartverifier/version"
 
 	"helm.sh/helm/v3/pkg/cli"
 	"helm.sh/helm/v3/pkg/cli/values"
@@ -36,7 +36,7 @@ import (
 
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
-	//"github.com/redhat-certification/chart-verifier/internal/chartverifier"
+	//"github.com/redhat-certification/my-chart-verifier/internal/chartverifier"
 )
 
 //func init() {

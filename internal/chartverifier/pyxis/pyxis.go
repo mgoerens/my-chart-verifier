@@ -22,7 +22,7 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/redhat-certification/chart-verifier/internal/chartverifier/utils"
+	"github.com/redhat-certification/my-chart-verifier/internal/chartverifier/utils"
 )
 
 var pyxisBaseURL = "https://catalog.redhat.com/api/containers/v1/repositories"
