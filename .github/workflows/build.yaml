@@ -213,7 +213,7 @@ jobs:
               if: ${{ steps.check_version_updated.outputs.updated == 'true'}}
               uses: mathieudutour/github-tag-action@v6.1
               with:
-                github_token: ${{ secrets.GITHUB_TOKEN }}
+                github_token: ${{ secrets.PAT_MGOERENS }}
                 custom_tag: ${{ steps.check_version_in_PR.outputs.PR_version }}
                 tag_prefix: ""
                 commit_sha: ${{ steps.master_sha.outputs.origin_master_sha }}
