@@ -6,7 +6,7 @@ metadata:
         profile:
             VendorType: partner
             version: v1.2
-        reportDigest: uint64:15548416190925456782
+        reportDigest: uint64:16704566884338942393
         chart-uri: https://github.com/mgoerens/my-chart-verifier/blob/master/tests/charts/psql-service/0.1.9/psql-service-0.1.9.tgz?raw=true
         digests:
             chart: sha256:49fceb6b1451748de906ae98339d442e68c8ba832b79a1f98d306c4878d30797
