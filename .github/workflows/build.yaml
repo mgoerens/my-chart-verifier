@@ -3,7 +3,7 @@ name: Build, Test, Automerge and Tag
 on:
     pull_request_target:
         types: [opened, synchronize, reopened]
-        branches: [ main ]
+        branches: [ master ]
 
 jobs:
     build-test-release:
