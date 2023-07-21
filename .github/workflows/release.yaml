@@ -22,7 +22,7 @@ jobs:
       - name: Print tag to GITHUB_OUTPUT
         id: get_tag
         run: |
-          echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_OUTPUT
+          echo "release_version=${GITHUB_REF#refs/*/}" | tee -a $GITHUB_OUTPUT
 
       # Todo: check that the tag == chart-verifier version ?
       # Would prevent falty tags to be pushed
@@ -33,7 +33,7 @@ jobs:
           TARBALL_NAME="my-chart-verifier.tgz-${{ steps.get_tag.outputs.release_version }}.tgz"
           tar -zcvf $TARBALL_NAME -C out/ my-chart-verifier
           export TARBALL_PATH=$(realpath $TARBALL_NAME)
-          echo "tarball_path=$TARBALL_PATH" >> $GITHUB_OUTPUT
+          echo "tarball_path=$TARBALL_PATH" | tee -a $GITHUB_OUTPUT
 
       - name: Set up Python 3.x
         uses: actions/setup-python@v2
@@ -55,7 +55,7 @@ jobs:
         id: create_release
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: ${{ steps.get_tag.outputs.RELEASE_VERSION }}
+          tag_name: ${{ steps.get_tag.outputs.release_version }}
           body: ${{ steps.release_body.outputs.PR_release_body }}
           files: ${{ steps.build_bin.outputs.tarball_path }}
         env:
