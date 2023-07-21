@@ -1,0 +1,11 @@
+{
+    "version": "1.12.2",
+    "quay-image":  "quay.io/redhat-certification/chart-verifier",
+    "release-info": [
+        "<ul>",
+        "<li>Use multiline parsing for run task (#376) by @komish</li>",
+        "<li>Add commit ID to version output (#370) by @mgoerens</li>",
+        "<li>apply kubecontext setting to kubectl client (#377) by @dcurran90</li>",
+        "</ul>"
+    ]
+}
