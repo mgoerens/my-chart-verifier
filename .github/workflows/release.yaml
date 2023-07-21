@@ -35,6 +35,15 @@ jobs:
           export TARBALL_PATH=$(realpath $TARBALL_NAME)
           echo "tarball_path=$TARBALL_PATH" | tee -a $GITHUB_OUTPUT
 
+      - name: Check that the tag matches the current version
+        id: check_tag_and_version
+        run: |
+          release_version=${{ steps.get_tag.outputs.release_version }}
+          bin_version=${out/my-chart-verifier version --as-data | jq -r .version}
+          if [[ "$release_version" != "$bin_version" ]]; then
+            echo "Binary version ($bin_version) doesn't match tag ($release_version)" && exit 1
+          fi
+
       - name: Set up Python 3.x
         uses: actions/setup-python@v2
         with:
