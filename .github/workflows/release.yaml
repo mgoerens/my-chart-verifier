@@ -58,7 +58,7 @@ jobs:
 
       - name: Generate release body
         id: release_body
-        run: echo "release_body=$(ve1/bin/print-release-body)"" | tee -a $GITHUB_OUTPUT
+        run: echo "release_body=$(ve1/bin/print-release-body)" | tee -a $GITHUB_OUTPUT
 
       - name: Create the the release
         id: create_release
