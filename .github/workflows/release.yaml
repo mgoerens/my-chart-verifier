@@ -30,8 +30,9 @@ jobs:
         id: build_bin
         run: |
           make bin
-          tar -zcvf my-chart-verifier.tgz-${{ steps.get_tag.outputs.release_version }}.tgz -C out/ my-chart-verifier
-          export TARBALL_PATH=$(realpath my-chart-verifier.tgz)
+          TARBALL_NAME="my-chart-verifier.tgz-${{ steps.get_tag.outputs.release_version }}.tgz"
+          tar -zcvf $TARBALL_NAME -C out/ my-chart-verifier
+          export TARBALL_PATH=$(realpath $TARBALL_NAME)
           echo "tarball_path=$TARBALL_PATH" >> $GITHUB_OUTPUT
 
       - name: Set up Python 3.x
