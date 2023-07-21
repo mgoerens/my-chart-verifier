@@ -1,0 +1,60 @@
+name: create release on new tags
+
+on:
+  push:
+    # Publish semver tags as releases.
+    tags: '[0-9]+.[0-9]+.[0-9]+'
+
+jobs:
+  build-and-push:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Go
+        uses: actions/setup-go@v4
+        with:
+          go-version-file: go.mod
+
+      - name: Build binary and make tarball
+        id: build_bin
+        run: |
+          make bin
+          tar -zcvf my-chart-verifier.tgz -C out/ my-chart-verifier
+          export TARBALL_PATH=$(realpath my-chart-verifier.tgz)
+          echo "tarball_path=$TARBALL_PATH"
+
+      - name: Print tag to GITHUB_OUTPUT
+        id: get_tag
+        run: |
+          echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_OUTPUT
+
+      - name: Set up Python 3.x
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+
+      - name: Set up Python scripts
+        run: |
+          # set up python requirements and scripts on PR branch
+          python3 -m venv ve1
+          cd scripts && ../ve1/bin/pip3 install -r requirements.txt && cd ..
+          cd scripts && ../ve1/bin/python3 setup.py install && cd ..
+
+      - name: Generate release body
+        id: release_body
+        run: ve1/bin/print-release-body
+
+      - name: Create the the release
+        id: create_release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ steps.get_tag.outputs.RELEASE_VERSION }}
+          body: ${{ steps.release_body.outputs.PR_release_body }}
+          files: ${{ steps.build_bin.outputs.tarball_path }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
