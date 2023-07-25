@@ -68,14 +68,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Login to Quay as Bot
-        id: login_as_bot
-        uses: redhat-actions/podman-login@v1
-        with:
-          username: ${{ secrets.QUAY_BOT_USERNAME }}
-          password: ${{ secrets.QUAY_BOT_TOKEN }}
-          registry: quay.io/mgoerens
-
       - name: Build container images
         id: build_container_images
         run: |
