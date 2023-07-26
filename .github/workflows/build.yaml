@@ -76,7 +76,7 @@ jobs:
             - name: Get Date
               id: get-date
               run: |
-                echo "date=$(/bin/date -u "+%Y%m%d")" >> $GITHUB_OUTPUT
+                echo "date=$(/bin/date -u "+%Y%m%d")" | tee -a $GITHUB_OUTPUT
               shell: bash
 
             - uses: actions/cache@v2
