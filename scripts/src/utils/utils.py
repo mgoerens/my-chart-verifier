@@ -1,5 +1,8 @@
-import os
+def add_output(key,value):
+    """This function prints the key/value pair to stdout in a "key=value" format.
 
-def add_output(name,value):
-    with open(os.environ['GITHUB_OUTPUT'],'a') as fh:
-        print(f'{name}={value}',file=fh)
+    This is intended to be piped to GITHUB_OUTPUT so that values can be reused in
+    subsequent tasks.
+    """
+
+    print(f'{key}={value}')

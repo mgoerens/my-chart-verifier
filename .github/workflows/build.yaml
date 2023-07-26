@@ -71,12 +71,12 @@ jobs:
               id: check_version_in_PR
               run: |
                 # check if release file only is included in PR
-                ve1/bin/release-checker --api-url=${{ github.event.pull_request._links.self.href }}
+                ve1/bin/release-checker --api-url=${{ github.event.pull_request._links.self.href }} | tee -a $GITHUB_OUTPUT
 
             - name: Get Date
               id: get-date
               run: |
-                echo "date=$(/bin/date -u "+%Y%m%d")" >> $GITHUB_OUTPUT
+                echo "date=$(/bin/date -u "+%Y%m%d")" | tee -a $GITHUB_OUTPUT
               shell: bash
 
             - uses: actions/cache@v2
@@ -99,7 +99,7 @@ jobs:
               run: |
                   # build a docker image
                   commit_sha=$(git rev-parse --short HEAD)
-                  ve1/bin/build-and-test --image-name="quay.io/mgoerens/my-chart-verifier" --sha-value=$commit_sha --build-only="True"}
+                  ve1/bin/build-and-test --image-name="quay.io/mgoerens/my-chart-verifier" --sha-value=$commit_sha --build-only="True"} | tee -a $GITHUB_OUTPUT
 
 
             - name: Build podman Image
@@ -112,15 +112,14 @@ jobs:
                   image_tag="podman-"$commit_sha
                   echo "use image tag $image_tag"
                   podman build -t quay.io/mgoerens/my-chart-verifier:$image_tag .
-                  echo "podman_image_tag=$image_tag" >> $GITHUB_OUTPUT
+                  echo "podman_image_tag=$image_tag" | tee -a $GITHUB_OUTPUT
 
             - name: Create tarfile
               id: create-tarfile
               working-directory: ./my-chart-verifier
               run: |
                 # create test tarball for the tests
-                ve1/bin/tar-file --release="test"
-
+                ve1/bin/tar-file --release="test" | tee -a $GITHUB_OUTPUT
 
             - name: Login to oc
               working-directory: ./my-chart-verifier
@@ -182,7 +181,7 @@ jobs:
               if: ${{ steps.check_version_in_PR.outputs.PR_includes_release == 'true' }}
               run: |
                 # check if version file was changed
-                ve1/bin/release-checker --version=${{ steps.check_version_in_PR.outputs.PR_version }}
+                ve1/bin/release-checker --version=${{ steps.check_version_in_PR.outputs.PR_version }} | tee -a $GITHUB_OUTPUT
 
             - name: Approve PR
               id: approve_pr
@@ -206,7 +205,7 @@ jobs:
               run: |
                 git fetch
                 export ORIGIN_MASTER_SHA=$(git rev-parse origin/master)
-                echo "origin_master_sha=$ORIGIN_MASTER_SHA" >> $GITHUB_OUTPUT
+                echo "origin_master_sha=$ORIGIN_MASTER_SHA" | tee -a $GITHUB_OUTPUT
 
             - name: Tag master
               id: tag_version
