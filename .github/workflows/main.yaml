@@ -19,7 +19,7 @@ jobs:
         id: get_commit_id
         run: |
           # Make the short commit ID available to the following steps.
-          COMMIT_ID=$(shell git rev-parse --short HEAD)
+          COMMIT_ID=$(git rev-parse --short HEAD)
           echo "commit_id=$COMMIT_ID" | tee -a $GITHUB_OUTPUT
 
       - name: Build container images
