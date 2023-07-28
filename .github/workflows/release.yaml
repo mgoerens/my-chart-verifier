@@ -73,10 +73,8 @@ jobs:
         run: |
             # Build podman images locally
             image_tag=${{ steps.get_tag.outputs.release_version }}
-            podman build \
-              -t quay.io/mgoerens/my-chart-verifier:$image_tag \
-              -t quay.io/mgoerens/my-chart-verifier:latest \
-              -t quay.io/mgoerens/my-chart-verifier:main .
+            make build-image IMAGE_TAG=${{ steps.get_tag.outputs.release_version }}
+            make build-image IMAGE_TAG=latest
 
       - name: Push to quay.io
         id: push_to_quay
@@ -86,7 +84,6 @@ jobs:
           tags: |
             ${{ steps.get_tag.outputs.release_version }}
             latest
-            main
           registry: quay.io/mgoerens
           username: ${{ secrets.QUAY_BOT_USERNAME }}
           password: ${{ secrets.QUAY_BOT_TOKEN }}
