@@ -1,9 +1,14 @@
 name: Build, Test, Automerge and Tag
 
+# This workflow runs on all PRs that are targetting the main branch.
+#
+# It runs the test suite. If the PR is a release PR, it automerges and tags the main branch with
+# the corresonding new version.
+
 on:
     pull_request_target:
         types: [opened, synchronize, reopened]
-        branches: [ master ]
+        branches: [ main ]
 
 jobs:
     build-test-release:
@@ -34,9 +39,9 @@ jobs:
               working-directory: ./my-chart-verifier
               run: make fmt
 
-#            - name: Run Linters
-#              working-directory: ./my-chart-verifier
-#              run: make lint
+            - name: Run Linters
+              working-directory: ./my-chart-verifier
+              run: make lint
 
             - name: Build Binary
               working-directory: ./my-chart-verifier
@@ -54,7 +59,7 @@ jobs:
                   fi
 
             - name: Set up Python 3.x
-              uses: actions/setup-python@v2
+              uses: actions/setup-python@v4
               with:
                 python-version: '3.9'
 
@@ -79,7 +84,7 @@ jobs:
                 echo "date=$(/bin/date -u "+%Y%m%d")" | tee -a $GITHUB_OUTPUT
               shell: bash
 
-            - uses: actions/cache@v2
+            - uses: actions/cache@v3
               id: cache
               with:
                   path: ./my-chart-verifier/oc
@@ -101,7 +106,6 @@ jobs:
                   commit_sha=$(git rev-parse --short HEAD)
                   ve1/bin/build-and-test --image-name="quay.io/mgoerens/my-chart-verifier" --sha-value=$commit_sha --build-only="True"}
 
-
             - name: Build podman Image
               working-directory: ./my-chart-verifier
               id: build_podman_image
@@ -112,7 +116,7 @@ jobs:
                   image_tag="podman-"$commit_sha
                   echo "use image tag $image_tag"
                   podman build -t quay.io/mgoerens/my-chart-verifier:$image_tag .
-                  echo "podman_image_tag=$image_tag" >> $GITHUB_OUTPUT
+                  echo "podman_image_tag=$image_tag" | tee -a $GITHUB_OUTPUT
 
             - name: Create tarfile
               id: create-tarfile
@@ -120,7 +124,6 @@ jobs:
               run: |
                 # create test tarball for the tests
                 ve1/bin/tar-file --release="test"
-
 
             - name: Login to oc
               working-directory: ./my-chart-verifier
@@ -200,20 +203,25 @@ jobs:
                 MERGE_METHOD: squash
                 MERGE_LABELS: ""
 
-            - name: Get master branch sha
-              id: master_sha
+            - name: Get main branch sha
+              id: main_sha
               if: ${{ steps.check_version_updated.outputs.updated == 'true'}}
               run: |
                 git fetch
-                export ORIGIN_MASTER_SHA=$(git rev-parse origin/master)
-                echo "origin_master_sha=$ORIGIN_MASTER_SHA" >> $GITHUB_OUTPUT
+                export ORIGIN_MAIN_SHA=$(git rev-parse origin/main)
+                echo "origin_main_sha=$ORIGIN_MAIN_SHA" | tee -a $GITHUB_OUTPUT
 
-            - name: Tag master
-              id: tag_version
+            - name: Create release tag
+              id: create_release_tag
               if: ${{ steps.check_version_updated.outputs.updated == 'true'}}
               uses: mathieudutour/github-tag-action@v6.1
               with:
-                github_token: ${{ secrets.PAT_MGOERENS }}
+                # It is necessary to use a Personal Access Token here rather than the usual GITHUB_TOKEN, as this
+                # step should trigger the release.yaml workflow, and events (such as tags) triggered by the
+                # GITHUB_TOKEN cannot create a new workflow run. See:
+                # https://docs.github.com/en/actions/using-workflows/triggering-a-workflow#triggering-a-workflow-from-a-workflow
+                # This Personal Access Token belongs to the openshift-helm-charts-bot account.
+                github_token: ${{ secrets.GH_HELM_BOT_TOKEN }}
                 custom_tag: ${{ steps.check_version_in_PR.outputs.PR_version }}
                 tag_prefix: ""
-                commit_sha: ${{ steps.master_sha.outputs.origin_master_sha }}
+                commit_sha: ${{ steps.main_sha.outputs.origin_main_sha }}

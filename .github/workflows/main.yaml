@@ -6,7 +6,7 @@ name: Create container image on main
 on:
     push:
         branches:
-            - master
+            - main
 jobs:
     image:
       name: Build and push container images

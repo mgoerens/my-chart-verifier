@@ -1,5 +1,26 @@
 name: create release on new tags
 
+# This workflow is triggered by new version tags (e.g. "1.12.2" without leading "v") on the main
+# branch.
+#
+# Tagging should be automatic after each merged PR release (see the build.yaml workflow).
+# Alternatively, this workflow can be triggered by manually creating a tag on the main branch with
+# the aforementioned format. Note that the tests are *not* run by this workflow, and that you
+# should therefore apply caution before manually tagging the main branch in order to trigger it.
+#
+# This workflow contains a check that the tag matches the version set in
+# ./pkg/chartverifier/version/version_info.json.
+#
+# In order to recreate a GitHub release and rebuild its associated assets, first the tag needs to
+# be manually deleted (e.g `git tag --delete 1.12.2 && git push --delete origin 1.12.2`). The
+# GitHub release that was created for this tag automatically turns into a "Draft" release and will
+# need to be manually cleaned up, though it doesn't constitute a blocker for this workflow to run.
+# Finally, as mentioned above, create a new tag (e.g. `git tag 1.12.2 && git push --tags`) to
+# recreate the release.
+#
+# This workflow builds all release assets (the tarball and the container images), creates the
+# Github release and attaches the tarball to it.
+
 on:
   push:
     # Publish semver tags as releases.
@@ -43,7 +64,7 @@ jobs:
           fi
 
       - name: Set up Python 3.x
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: '3.9'
 
@@ -58,7 +79,7 @@ jobs:
         id: release_body
         run: echo "release_body=$(ve1/bin/print-release-body)" | tee -a $GITHUB_OUTPUT
 
-      - name: Create the the release
+      - name: Create the release
         id: create_release
         uses: softprops/action-gh-release@v1
         with:
@@ -72,7 +93,6 @@ jobs:
         id: build_container_images
         run: |
             # Build podman images locally
-            image_tag=${{ steps.get_tag.outputs.release_version }}
             make build-image IMAGE_TAG=${{ steps.get_tag.outputs.release_version }}
             make build-image IMAGE_TAG=latest
 
