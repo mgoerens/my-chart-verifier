@@ -16,15 +16,16 @@ import json
 import tarfile
 from deepdiff import DeepDiff
 
-sys.path.append('./scripts/src/')
-from report import report_info
-
 import yaml
 try:
     from yaml import CLoader as Loader, CDumper as Dumper
 except ImportError:
     from yaml import Loader, Dumper
 
+REPORT_ANNOTATIONS = "annotations"
+REPORT_RESULTS = "results"
+REPORT_DIGESTS = "digests"
+REPORT_METADATA = "metadata"
 
 @scenario(
     "features/chart_good.feature",
@@ -281,17 +282,17 @@ def check_report(verify_result, profile_type, report_info_location, image_type, 
     print(f"test_report_data : \n{test_report_data}")
     test_report = json.loads(test_report_data)
 
-    results_diff = DeepDiff(expected_reports[report_info.REPORT_RESULTS],test_report[report_info.REPORT_RESULTS],ignore_order=True)
+    results_diff = DeepDiff(expected_reports[REPORT_RESULTS],test_report[REPORT_RESULTS],ignore_order=True)
     if results_diff:
         print(f"difference found in results : {results_diff}")
         test_passed = False
 
     expected_annotations = {}
-    for report_annotation in expected_reports[report_info.REPORT_ANNOTATIONS]:
+    for report_annotation in expected_reports[REPORT_ANNOTATIONS]:
         expected_annotations[report_annotation["name"]] = report_annotation["value"]
 
     tested_annotations = {}
-    for report_annotation in test_report[report_info.REPORT_ANNOTATIONS]:
+    for report_annotation in test_report[REPORT_ANNOTATIONS]:
         tested_annotations[report_annotation["name"]] = report_annotation["value"]
 
     missing_annotations = set(expected_annotations.keys()) - set(tested_annotations.keys())
@@ -313,14 +314,14 @@ def check_report(verify_result, profile_type, report_info_location, image_type, 
                 test_passed = False
                 print(f"{annotation} has different content, expected: {expected_annotations[annotation]}, got: {tested_annotations[annotation]}")
 
-    digests_diff = DeepDiff(expected_reports[report_info.REPORT_DIGESTS],test_report[report_info.REPORT_DIGESTS],ignore_order=True)
+    digests_diff = DeepDiff(expected_reports[REPORT_DIGESTS],test_report[REPORT_DIGESTS],ignore_order=True)
     if digests_diff:
         print(f"difference found in digests : {digests_diff}")
         test_passed = False
 
     differing_metadata = {"chart-uri"}
-    expected_metadata = expected_reports[report_info.REPORT_METADATA]
-    test_metadata = test_report[report_info.REPORT_METADATA]
+    expected_metadata = expected_reports[REPORT_METADATA]
+    test_metadata = test_report[REPORT_METADATA]
     for metadata in expected_metadata.keys():
         if not metadata in differing_metadata:
             metadata_diff = DeepDiff(expected_metadata[metadata],test_metadata[metadata],ignore_order=True)
