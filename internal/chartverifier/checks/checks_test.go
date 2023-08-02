@@ -580,7 +580,7 @@ func TestSignatureIsValid(t *testing.T) {
 		},
 		{
 			description: "signed chart with no key",
-			uri:         "https://github.com/mgoerens/my-chart-verifier/blob/master/tests/charts/psql-service/0.1.11/psql-service-0.1.11.tgz?raw=true",
+			uri:         "https://github.com/mgoerens/my-chart-verifier/blob/main/tests/charts/psql-service/0.1.11/psql-service-0.1.11.tgz?raw=true",
 			keyFile:     "",
 			reason:      fmt.Sprintf("%s : %s", ChartSigned, SignatureNoKey),
 			ok:          true, skipped: true,

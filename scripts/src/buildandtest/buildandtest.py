@@ -130,7 +130,7 @@ def main():
 
         if not args.build_only:
 
-            chart = {"url" : "https://github.com/mgoerens/my-chart-verifier/blob/master/internal/chartverifier/checks/chart-0.1.0-v3.valid.tgz?raw=true",
+            chart = {"url" : "https://github.com/mgoerens/my-chart-verifier/blob/main/internal/chartverifier/checks/chart-0.1.0-v3.valid.tgz?raw=true",
                 "results":{"passed":"10","failed":"1"},
                 "metadata":{"vendorType":"partner","profileVersion":"v1.0"}}
 

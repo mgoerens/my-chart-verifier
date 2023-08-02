@@ -174,10 +174,10 @@ This example shows a basic invocation of the my-chart-verifier API, getting and 
 
 Note: 
 - The example does not include error checking code for clarity purposes.
-  - The example with error checking is available [here](https://github.com/mgoerens/my-chart-verifier/blob/master/pkg/chartverifier/samples/sample.go).
+  - The example with error checking is available [here](https://github.com/mgoerens/my-chart-verifier/blob/main/pkg/chartverifier/samples/sample.go).
 - For full use of the my-chart-verifier see:
-    - [https://github.com/mgoerens/my-chart-verifier/blob/master/cmd/verify.go](https://github.com/mgoerens/my-chart-verifier/blob/master/cmd/verify.go)
-    - [https://github.com/mgoerens/my-chart-verifier/blob/master/cmd/report.go](https://github.com/mgoerens/my-chart-verifier/blob/master/cmd/report.go)
+    - [https://github.com/mgoerens/my-chart-verifier/blob/main/cmd/verify.go](https://github.com/mgoerens/my-chart-verifier/blob/main/cmd/verify.go)
+    - [https://github.com/mgoerens/my-chart-verifier/blob/main/cmd/report.go](https://github.com/mgoerens/my-chart-verifier/blob/main/cmd/report.go)
 
 1. Import the packages of the my-chart-verifier API:
 ```
@@ -199,7 +199,7 @@ import (
 	verifier, verifierErr := verifier.NewVerifier().
 		SetValues(verifier.CommandSet, commandSet).
 		UnEnableChecks([]checks.CheckName{checks.ChartTesting}).
-		Run("https://github.com/mgoerens/my-chart-verifier/blob/master/tests/charts/psql-service/0.1.9/psql-service-0.1.9.tgz?raw=true")
+		Run("https://github.com/mgoerens/my-chart-verifier/blob/main/tests/charts/psql-service/0.1.9/psql-service-0.1.9.tgz?raw=true")
 
 ```
 3. Get and print the report, created from the previous step, in the YAML format:

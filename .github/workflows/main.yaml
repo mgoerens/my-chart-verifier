@@ -33,7 +33,7 @@ jobs:
         id: push_to_quay
         uses: redhat-actions/push-to-registry@v2
         with:
-          image: chart-verifier
+          image: my-chart-verifier
           tags: |
             ${{ steps.get_commit_id.outputs.commit_id }}
             main

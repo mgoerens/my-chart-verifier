@@ -4,6 +4,7 @@ IMAGE_BUILDER?=podman
 IMAGE_REPO?=quay.io/mgoerens
 COMMIT_ID=$(shell git rev-parse --short HEAD)
 COMMIT_ID_LONG=$(shell git rev-parse HEAD)
+IMAGE_TAG=$(COMMIT_ID)
 
 default: bin
 
@@ -52,6 +53,8 @@ bin_win:
 test:
 	go test -v ./...
 
+# Build the container image. Usage: make build-image IMAGE_TAG=my_tag
+# If IMAGE_TAG is not provided, use the COMMIT_ID
 .PHONY: build-image
 build-image:
 	$(IMAGE_BUILDER) build -t $(IMAGE_REPO)/my-chart-verifier:$(IMAGE_TAG) .
@@ -61,7 +64,6 @@ build-image:
 .PHONY: push-image
 push-image:
 	$(IMAGE_BUILDER) push $(IMAGE_REPO)/my-chart-verifier:$(IMAGE_TAG) .
-
 
 .PHONY: gosec
 gosec: install.gosec
