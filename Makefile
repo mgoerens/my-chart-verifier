@@ -5,6 +5,7 @@ IMAGE_REPO?=quay.io/mgoerens
 COMMIT_ID=$(shell git rev-parse --short HEAD)
 COMMIT_ID_LONG=$(shell git rev-parse HEAD)
 IMAGE_TAG=$(COMMIT_ID)
+QUAY_EXPIRE_AFTER="never"
 
 default: bin
 
@@ -57,7 +58,7 @@ test:
 # If IMAGE_TAG is not provided, use the COMMIT_ID
 .PHONY: build-image
 build-image:
-	$(IMAGE_BUILDER) build -t $(IMAGE_REPO)/my-chart-verifier:$(IMAGE_TAG) .
+	$(IMAGE_BUILDER) build --no-cache --label quay.expires-after=$(QUAY_EXPIRE_AFTER) -t $(IMAGE_REPO)/my-chart-verifier:$(IMAGE_TAG) .
 
 # Push the container image. Usage: make push-image IMAGE_TAG=my_tag
 # If IMAGE_TAG is not provided, use the COMMIT_ID
