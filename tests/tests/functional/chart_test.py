@@ -117,7 +117,7 @@ def verifier_version(image_type):
 
 @when(
     parsers.parse(
-        "I run the my-chart-verifier verify command against the chart to generate a report"
+        "I run the my-chart-verifier verify command against the chart to generate a report" # noqa E501
     ),
     target_fixture="run_verify",
 )
@@ -131,7 +131,7 @@ def run_verify(image_type, profile_type, chart_location):
 
 @when(
     parsers.parse(
-        "I run the my-chart-verifier verify command against the signed chart to generate "
+        "I run the my-chart-verifier verify command against the signed chart to generate " # noqa E501
         "a report"
     ),
     target_fixture="run_signed_verify",
@@ -200,7 +200,7 @@ def run_version_tarball_image(tarball_name):
     tar = tarfile.open(tarball_name, "r:gz")
     tar.extractall(path="./test_verifier")
     out = subprocess.run(
-        ["./test_verifier/my-chart-verifier", "version", "--as-data"], capture_output=True
+        ["./test_verifier/my-chart-verifier", "version", "--as-data"], capture_output=True # noqa E501
     )
     return normalize_version(out.stdout.decode("utf-8"))
 
@@ -453,7 +453,7 @@ def chart_report(
 def check_report(
     verify_result, profile_type, report_info_location, image_type, verifier_version
 ):
-    """Compares the output of my-chart-verifier against a pre-generated report, containing
+    """Compares the output of my-chart-verifier against a pre-generated report, containing # noqa E501
     the expected results.
 
     Fails the tests if a difference is found.
