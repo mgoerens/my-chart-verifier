@@ -58,6 +58,8 @@ test:
 # If IMAGE_TAG is not provided, use the COMMIT_ID
 .PHONY: build-image
 build-image:
+	# TODO: Adding --no-cache option as a workaround to https://github.com/containers/buildah/issues/4632
+	# This can be removed as soon as we can ensure that the ubuntu-latest runner image uses podman=>5.6.0
 	$(IMAGE_BUILDER) build --no-cache --label quay.expires-after=$(QUAY_EXPIRE_AFTER) -t $(IMAGE_REPO)/my-chart-verifier:$(IMAGE_TAG) .
 
 # Push the container image. Usage: make push-image IMAGE_TAG=my_tag
