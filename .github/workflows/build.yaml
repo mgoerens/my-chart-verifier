@@ -71,6 +71,13 @@ jobs:
                 cd scripts && ../ve1/bin/pip3 install -r requirements.txt && cd ..
                 cd scripts && ../ve1/bin/python3 setup.py install && cd ..
 
+            - name: Run flake8
+              working-directory: ./my-chart-verifier
+              run: |
+                ve1/bin/pip3 install flake8
+                ve1/bin/flake8 scripts/
+                ve1/bin/flake8 tests/
+
             - name: Check if only release file in PR
               working-directory: ./my-chart-verifier
               id: check_version_in_PR
