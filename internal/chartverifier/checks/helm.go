@@ -17,7 +17,6 @@
 package checks
 
 import (
-	"bufio"
 	"fmt"
 	"io"
 	"net/http"
@@ -27,8 +26,6 @@ import (
 	"path/filepath"
 	"regexp"
 	"strings"
-
-	"gopkg.in/yaml.v3"
 
 	"helm.sh/helm/v3/pkg/chartutil"
 
@@ -224,49 +221,28 @@ func getImageReferences(chartURI string, vals map[string]interface{}, kubeVersio
 	return getImagesFromContent(txt)
 }
 
+// getImagesFromContent evaluates generated templates from
+// helm and extracts images which are returned in a slice
 func getImagesFromContent(content string) ([]string, error) {
-	imagesMap := make(map[string]bool)
-
-	type ImageRef struct {
-		Ref string `yaml:"image"`
+	re, err := regexp.Compile(`\s+image\:\s+(?P<image>.*)\n`)
+	if err != nil {
+		return nil, fmt.Errorf("error getting images; %v", err)
+	}
+	matches := re.FindAllStringSubmatch(content, -1)
+	imageMap := make(map[string]struct{})
+	for _, match := range matches {
+		image := strings.TrimSpace(match[re.SubexpIndex("image")])
+		image = strings.Trim(image, "\"")
+		image = strings.Trim(image, "'")
+		imageMap[image] = struct{}{}
 	}
 
-	r := strings.NewReader(content)
-	reader := bufio.NewReader(r)
-	line, err := getNextLine(reader)
-	for err == nil {
-		var imageRef ImageRef
-		yamlErr := yaml.Unmarshal([]byte(line), &imageRef)
-		if yamlErr == nil {
-			if len(imageRef.Ref) > 0 && !imagesMap[imageRef.Ref] {
-				imagesMap[imageRef.Ref] = true
-			}
-		}
-		line, err = getNextLine(reader)
-		if err == io.EOF {
-			err = nil
-			break
-		}
+	var images []string
+	for k := range imageMap {
+		images = append(images, k)
 	}
 
-	images := make([]string, 0, len(imagesMap))
-	for image := range imagesMap {
-		images = append(images, image)
-	}
-
-	return images, err
-}
-
-func getNextLine(reader *bufio.Reader) (string, error) {
-	nextLine, isPrefix, err := reader.ReadLine()
-	if isPrefix && err == nil {
-		for isPrefix && err == nil {
-			var partLine []byte
-			partLine, isPrefix, err = reader.ReadLine()
-			nextLine = append(nextLine, partLine...)
-		}
-	}
-	return string(nextLine), err
+	return images, nil
 }
 
 func getCacheDir(opts *CheckOptions) string {

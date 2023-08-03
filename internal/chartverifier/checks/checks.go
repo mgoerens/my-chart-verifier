@@ -341,7 +341,9 @@ func SignatureIsValid(opts *CheckOptions) (Result, error) {
 		resp, err := http.Get(provFile)
 		if err != nil {
 			return NewResult(false, fmt.Sprintf("%s : get error was %v", SignatureFailure, err)), nil
-		} else if resp.StatusCode == 404 {
+		}
+
+		if resp.StatusCode == 404 {
 			return NewSkippedResult(fmt.Sprintf("%s : %s", ChartNotSigned, SignatureIsNotPresentSuccess)), nil
 		} else if resp.StatusCode != 200 {
 			return NewResult(false, fmt.Sprintf("%s. get prov file response code was %d", SignatureFailure, resp.StatusCode)), nil
@@ -467,12 +469,8 @@ func getOCPRange(kubeVersionRange string) (string, error) {
 }
 
 func downloadFile(fileURL *url.URL, directory string) (string, error) {
-	urlPath := fileURL.Path
-	segments := strings.Split(urlPath, "/")
-	fileName := segments[len(segments)-1]
-
 	// Create blank file
-	filePath := path.Join(directory, fileName)
+	filePath := path.Join(directory, path.Base(fileURL.Path))
 	// #nosec G304
 	file, err := os.Create(filePath)
 	if err != nil {
@@ -514,23 +512,29 @@ func certifyImages(r Result, opts *CheckOptions, registry string) Result {
 	}
 
 	images, err := getImageReferences(opts.URI, opts.Values, kubeVersion)
-
 	if err != nil {
 		r.SetResult(false, fmt.Sprintf("%s : Failed to get images, error running helm template : %v", ImageCertifyFailed, err))
-	} else if len(images) == 0 {
+	}
+
+	if len(images) == 0 {
 		r.SetResult(true, NoImagesToCertify)
 	} else {
 		for _, image := range images {
-			err = nil
-			imageRef := parseImageReference(image)
-
-			if len(imageRef.Registries) == 0 {
-				imageRef.Registries, err = pyxis.GetImageRegistries(imageRef.Repository)
+			// skip to evaluate next image, if current image is an empty string
+			if strings.Trim(image, " ") == "" {
+				r.AddResult(false, "ImageCertify() = empty image found")
+				continue
 			}
 
-			if err != nil {
-				r.AddResult(false, fmt.Sprintf("%s : %s : %v", ImageNotCertified, image, err))
-			} else if len(imageRef.Registries) == 0 {
+			imageRef := parseImageReference(image)
+			if len(imageRef.Registries) == 0 {
+				imageRef.Registries, err = pyxis.GetImageRegistries(imageRef.Repository)
+				if err != nil {
+					r.AddResult(false, fmt.Sprintf("%s : %s : %v", ImageNotCertified, image, err))
+				}
+			}
+
+			if len(imageRef.Registries) == 0 {
 				r.AddResult(false, fmt.Sprintf("%s : %s", ImageNotCertified, image))
 			} else {
 				certified, checkImageErr := pyxis.IsImageInRegistry(imageRef)
