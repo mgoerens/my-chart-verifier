@@ -74,9 +74,11 @@ jobs:
             - name: Run flake8
               working-directory: ./my-chart-verifier
               run: |
-                ve1/bin/pip3 install flake8
-                ve1/bin/flake8 scripts/
-                ve1/bin/flake8 tests/
+                python3 -m venv ve_flake8
+                source ve_flake8/bin/activate
+                pip3 install flake8
+                flake8 scripts/
+                flake8 tests/
 
             - name: Check if only release file in PR
               working-directory: ./my-chart-verifier
