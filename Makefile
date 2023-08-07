@@ -66,7 +66,7 @@ build-image:
 # If IMAGE_TAG is not provided, use the COMMIT_ID
 .PHONY: push-image
 push-image:
-	$(IMAGE_BUILDER) push $(IMAGE_REPO)/my-chart-verifier:$(IMAGE_TAG) .
+	$(IMAGE_BUILDER) push $(IMAGE_REPO)/my-chart-verifier:$(IMAGE_TAG)
 
 .PHONY: gosec
 gosec: install.gosec
