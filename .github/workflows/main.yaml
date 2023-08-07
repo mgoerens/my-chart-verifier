@@ -54,18 +54,10 @@ jobs:
         with:
           python-version: '3.9'
 
-      - name: install flake8
+      - name: install & run flake8
         run: |
           python3.9 -m venv env
           source env/bin/activate
           pip install flake8
-          echo "VIRTUAL ENV:" $VIRTUAL_ENV
-
-      - name: run flake8
-        run: |
-          source env/bin/activate
-          echo "VIRTUAL ENV:" $VIRTUAL_ENV
           flake8 scripts/
           flake8 tests/
-          deactivate
-          source env/bin/activate
