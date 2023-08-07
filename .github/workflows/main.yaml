@@ -53,7 +53,6 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: '3.9'
-          cache: 'pipenv'
 
       - name: install flake8
         run: |
@@ -64,6 +63,7 @@ jobs:
 
       - name: run flake8
         run: |
+          source env/bin/activate
           echo "VIRTUAL ENV:" $VIRTUAL_ENV
           flake8 scripts/
           flake8 tests/
