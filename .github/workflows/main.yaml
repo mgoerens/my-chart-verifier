@@ -35,6 +35,7 @@ jobs:
             # Build podman images locally
             make build-image IMAGE_TAG=main
             make push-image IMAGE_TAG=main
+            podman rmi quay.io/mgoerens/my-chart-verifier:main
 
       - name: Build and push "commitID" container image
         run: |
