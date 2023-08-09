@@ -1,12 +1,15 @@
 name: Create container image on main
 
 # This workflow builds a container image for each commit on the main branch.
-# The image is tagged with the (short) commit ID and "main", and pushed to Quay.
+# The image is tagged with the (short) commit ID, "main" and "0.1.0" (i.e. the
+# development release), and pushed to Quay.
 
 on:
     push:
         branches:
             - main
+env:
+    DEV_RELEASE: 0.1.0
 jobs:
     image:
       name: Build and push container images
@@ -22,56 +25,24 @@ jobs:
           COMMIT_ID=$(git rev-parse --short HEAD)
           echo "commit_id=$COMMIT_ID" | tee -a $GITHUB_OUTPUT
 
-      - name: Log in to Quay.io
-        uses: redhat-actions/podman-login@v1
-        with:
-          username: ${{ secrets.QUAY_BOT_USERNAME }}
-          password: ${{ secrets.QUAY_BOT_TOKEN }}
-          registry: quay.io/mgoerens
-
-      - name: Build and push "main" container image
-        run: |
-            podman version
-            # Build podman images locally
-            make build-image IMAGE_TAG=main
-            make push-image IMAGE_TAG=main
-            podman rmi quay.io/mgoerens/my-chart-verifier:main
-
-      - name: Build and push "commitID" container image
+      - name: Build container images
+        id: build_container_images
         run: |
             podman version
             # Build podman images locally
             make build-image IMAGE_TAG=${{ steps.get_commit_id.outputs.commit_id }} QUAY_EXPIRE_AFTER=1w
-            make push-image IMAGE_TAG=${{ steps.get_commit_id.outputs.commit_id }}
+            make build-image IMAGE_TAG=main
+            make build-image IMAGE_TAG=${{ env.DEV_RELEASE }}
 
-      # - name: Push to quay.io
-      #   id: push_to_quay
-      #   uses: redhat-actions/push-to-registry@v2
-      #   with:
-      #     image: my-chart-verifier
-      #     tags: |
-      #       ${{ steps.get_commit_id.outputs.commit_id }}
-      #       main
-      #     registry: quay.io/mgoerens
-      #     username: ${{ secrets.QUAY_BOT_USERNAME }}
-      #     password: ${{ secrets.QUAY_BOT_TOKEN }}
-
-    # flake8_test:
-    #   name: Run Flake8
-    #   runs-on: ubuntu-latest
-    #   steps:
-    #   - name: Checkout code
-    #     uses: actions/checkout@v3
-
-    #   - name: Set up Python 3.x
-    #     uses: actions/setup-python@v4
-    #     with:
-    #       python-version: '3.9'
-
-    #   - name: install & run flake8
-    #     run: |
-    #       python3.9 -m venv env
-    #       source env/bin/activate
-    #       pip install flake8
-    #       flake8 scripts/
-    #       flake8 tests/
+      - name: Push to quay.io
+        id: push_to_quay
+        uses: redhat-actions/push-to-registry@v2
+        with:
+          image: my-chart-verifier
+          tags: |
+            ${{ steps.get_commit_id.outputs.commit_id }}
+            main
+            ${{ env.DEV_RELEASE }}
+          registry: quay.io/mgoerens
+          username: ${{ secrets.QUAY_BOT_USERNAME }}
+          password: ${{ secrets.QUAY_BOT_TOKEN }}
