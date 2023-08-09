@@ -10,6 +10,7 @@ on:
             - main
 env:
     DEV_RELEASE: 0.1.0
+    CONTAINER_REGISTRY: quay.io/mgoerens
 jobs:
     image:
       name: Build and push container images
@@ -32,7 +33,7 @@ jobs:
             # Build podman images locally
             make build-image IMAGE_TAG=${{ steps.get_commit_id.outputs.commit_id }} QUAY_EXPIRE_AFTER=1w
             make build-image IMAGE_TAG=main
-            make build-image IMAGE_TAG=${{ env.DEV_RELEASE }}
+            podman tag ${{ env.CONTAINER_REGISTRY }}/my-chart-verifier:main ${{ env.CONTAINER_REGISTRY }}/my-chart-verifier:${{ env.DEV_RELEASE }}
 
       - name: Push to quay.io
         id: push_to_quay
